@@ -32,15 +32,23 @@ python -V
 python3 -V
 ```
 
+2. Upgrade `pip` package-management system and underlying modules
+```bash
+pip install --upgrade pip
+```
+*On Windows, it's recommended to perform the following command :* `python -m pip install --upgrade pip`
 
 
+3. Instal **HEADAT**
+    - by cloning the current repository: `git clone https://github.com/lcsrodriguez/headat-signals`
+    - by installing it using `pip`: `pip install headat`
 
-We are using the library `wfdb` from [PhysioNet](https://physionet.org/) ([offical documentation](https://physionet.org/content/wfdb-python/3.4.1/)).
-
+If you choose the cloning method, please perform a prelinimary step: installing the dependencies manually by executing `pip install -r requirements.txt`
 
 ## Resources 
 
-- [Description of the header files (.hea)](https://www.physionet.org/physiotools/wag/header-5.htm)
+Here are some useful online resources in order to get a clear understanding of the .hea/.dat files format:
+- https://www.physionet.org/physiotools/wag/header-5.htm
 - https://archive.physionet.org/tutorials/creating-records.shtml
 - https://archive.physionet.org/faq.shtml#wfdbdigitalorphysical
 - https://www.physionet.org/physiotools/wag/wag.pdf
