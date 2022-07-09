@@ -1,10 +1,38 @@
-# DAT/HEA file reader/converter
+# HEA/DAT signals file processing
+
+Official GitHub repository for **HEADAT** library
 
 ## Introduction
 
+[PhysioNet](https://physionet.org/about/) is an association which has as main mission to conduct and catalyze for biomedical research & education, in part by offering free access to large collections of physiological and clinical data and related open-source software.
 
 
-## Dependencies
+[PhysioBank](https://archive.physionet.org/physiobank/) is an extensive archive of [PhysioNet](https://physionet.org/) of well-characterized digital recordings of physiologic signals, time series, and related data for use by the biomedical research community.
+
+
+
+PhysioBank has adopted an unified and well-structured file format in order to store and organize records and signals. The entire format system description is freely available in an highly-documentated website (check Section **Resources**)
+
+
+**HEADAT** is a fully-operational Python library used for extracting, processing, converting and exporting signals and records data within specified in-program format (DataFrames, Series, ...) or out-of-file on-disk or database files (see Section **Supported Export format** for more details) 
+
+**HEADAT** has one goal : *make ECG-related signals processing **easier** and **funnier*** by :
+- embedding the core functions and datasets of WFDB/ECG signals within the Python data-science ecosystem : NumPy, SciPy, Bokeh, Scikit-Learn, TensorFlow, ...
+- exporting data in high-quality format for further development in various languages and platforms : **R**, **Julia**, ...
+- supporting main features for High-Performance Computing
+- using streaming solutions for real-time analytics and making insights
+
+## Install
+
+**HEADAT** core functions are using other modules in order to run.
+
+1. Please make sure a recent version of Python is running
+```bash
+python -V
+python3 -V
+```
+
+
 
 
 We are using the library `wfdb` from [PhysioNet](https://physionet.org/) ([offical documentation](https://physionet.org/content/wfdb-python/3.4.1/)).
@@ -13,8 +41,15 @@ We are using the library `wfdb` from [PhysioNet](https://physionet.org/) ([offic
 ## Resources 
 
 - [Description of the header files (.hea)](https://www.physionet.org/physiotools/wag/header-5.htm)
+- https://archive.physionet.org/tutorials/creating-records.shtml
+- https://archive.physionet.org/faq.shtml#wfdbdigitalorphysical
+- https://www.physionet.org/physiotools/wag/wag.pdf
 
 
 ## License
 
-Lucas RODRIGUEZ
+*Developer & Maintener* : **Lucas RODRIGUEZ**
+
+
+*PhysioNet* is a repository of freely-available medical research data, managed by the MIT Laboratory for Computational Physiology.
+
