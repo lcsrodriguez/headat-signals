@@ -14,7 +14,7 @@ Official GitHub repository for **HEADAT** library
 PhysioBank has adopted an unified and well-structured file format in order to store and organize records and signals. The entire format system description is freely available in an highly-documentated website (check Section **Resources**)
 
 
-**HEADAT** is a fully-operational Python library used for extracting, processing, converting and exporting signals and records data within specified in-program format (DataFrames, Series, ...) or out-of-file on-disk or database files (see Section **Supported Export format** for more details) 
+**HEADAT** is a fully-operational Python library used for extracting, processing, converting and exporting signals and records data (under `.hea` and `.dat` format) within specified in-program format (DataFrames, Series, ...) or out-of-file on-disk or database files (see Section **Supported Export format** for more details) 
 
 **HEADAT** has one goal : *make ECG-related signals processing **easier** and **funnier*** by :
 - embedding the core functions and datasets of WFDB/ECG signals within the Python data-science ecosystem : NumPy, SciPy, Bokeh, Scikit-Learn, TensorFlow, ...
@@ -45,6 +45,8 @@ pip install --upgrade pip
 
 If you choose the cloning method, please perform a prelinimary step: installing the dependencies manually by executing `pip install -r requirements.txt`
 
+**Remark**: If you want to clearly uninstall the module, please use: `pip uninstall headat`.
+
 ## Resources 
 
 Here are some useful online resources in order to get a clear understanding of the .hea/.dat files format:
@@ -56,8 +58,8 @@ Here are some useful online resources in order to get a clear understanding of t
 
 ## License
 
-*Developer & Maintener* : **Lucas RODRIGUEZ**
+- *Developer & Maintener*: **Lucas RODRIGUEZ**
+- **Development date*: Since June 2022
 
 
 *PhysioNet* is a repository of freely-available medical research data, managed by the MIT Laboratory for Computational Physiology.
-
