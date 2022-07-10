@@ -19,7 +19,7 @@ PhysioBank has adopted an unified and well-structured file format in order to st
 **HEADAT** has one goal : *make ECG-related signals processing **easier** and **funnier*** by :
 - embedding the core functions and datasets of WFDB/ECG signals within the Python data-science ecosystem : NumPy, SciPy, Bokeh, Scikit-Learn, TensorFlow, ...
 - exporting data in high-quality format for further development in various languages and platforms : **R**, **Julia**, ...
-- supporting main features for High-Performance Computing
+- supporting main features for High-Performance Computing (HPC) application
 - using streaming solutions for real-time analytics and making insights
 
 ## Install

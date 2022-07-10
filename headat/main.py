@@ -63,6 +63,30 @@ class HDView():
         return HDView.VIEWS_INITIALIZED_COUNTER
 
 
+"""
+    1 record <-> 1 or more signals
+
+    ------------------------------------------------
+    1 record <-> 1 HDView 
+        - useful for extracting entire or partial signals and entire records or selected signals from 1 record
+        - importing them as numpy array or pandas DataFrame, series, dictionnary, Python list
+        - exporting them to specific formats:
+            - csv, xlsx, json, xml
+            - text file with specific extension (.txt, .out, .dat, ...)
+            - latex, markdown, html
+            - pickle
+            - parquet
+            - hdfs
+            - sqlite
+        - extracting useful information
+    ------------------------------------------------
+    1 or more records <-> 1 HDGroup ==> Goal: statistical comparison
+        - do the same as with 1 HDView but concat the multiple records side-by-side 
+
+
+"""
+
+
 class HDGroup():
     """
     HDGroup class
