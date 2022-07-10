@@ -1,6 +1,6 @@
 # HEA/DAT signals file processing
 
-Official GitHub repository for **HEADAT** library
+Official GitHub repository for **HEADAT** library: `.hea`/`.dat` files processing tool & Wrapper of [wfdb](https://wfdb.readthedocs.io/en/latest/) library.
 
 ## Introduction
 
@@ -72,10 +72,20 @@ Here are some useful online resources in order to get a clear understanding of t
 - https://www.physionet.org/physiotools/wag/wag.pdf
 
 
-## License
+## Acknowledgement
 
 - *Developer & Maintener*: **Lucas RODRIGUEZ**
-- *Development date*: June 2022 - ...
+- *Development date*: June 2022 - today
 
 
 *PhysioNet* is a repository of freely-available medical research data, managed by the MIT Laboratory for Computational Physiology.
+
+
+This wrapper is based on [wfdb](https://github.com/MIT-LCP/wfdb-python) features. Please consider using it for further development.
+
+
+## License
+
+Pleas check the [LICENSE](LICENSE.md) file for further details.
+
+TODO : Add license details
