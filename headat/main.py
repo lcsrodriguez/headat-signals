@@ -1,4 +1,14 @@
-from pydoc import classname
+"""
+
+        ██╗  ██╗███████╗ █████╗ ██████╗  █████╗ ████████╗
+        ██║  ██║██╔════╝██╔══██╗██╔══██╗██╔══██╗╚══██╔══╝
+        ███████║█████╗  ███████║██║  ██║███████║   ██║   
+        ██╔══██║██╔══╝  ██╔══██║██║  ██║██╔══██║   ██║   
+        ██║  ██║███████╗██║  ██║██████╔╝██║  ██║   ██║   
+        ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚═════╝ ╚═╝  ╚═╝   ╚═╝   
+
+            Developer: Lucas RODRIGUEZ (2022)
+"""
 import wfdb
 
 
@@ -16,7 +26,7 @@ class HDView():
 
         # Parsing the arguments of the c-tor
         self.source = source
-        self.title = title if title != None else f"HDView #{HDView.nb_views_initialized}"
+        self.title = title if title != None else f"HDView #{HDView.VIEWS_INITIALIZED_COUNTER}"
 
         # Increment the number of initialized views in order to get a count
         HDView.VIEWS_INITIALIZED_COUNTER += 1
@@ -33,10 +43,24 @@ class HDView():
             # TODO : Add if there is a .hea and a corresponding .dat file
             pass
 
-    def convert_record(self, format_type: str = None):
+    def t_csv(self):
         """
-        Function allowing 
+        Function converting the record to the CSV format
         """
+        pass
+
+    def t_xlsx(self):
+        """
+        Function converting the record to the XLSX format
+        """
+        pass
+
+    def get_total_views_counter() -> int:
+        """
+        Function returning the total number of views initialized 
+        since the execution of the program
+        """
+        return HDView.VIEWS_INITIALIZED_COUNTER
 
 
 class HDGroup():
