@@ -78,6 +78,8 @@ class HDView():
             - parquet
             - hdfs
             - sqlite
+            - matlab
+            - wav
         - extracting useful information
     ------------------------------------------------
     1 or more records <-> 1 HDGroup ==> Goal: statistical comparison
