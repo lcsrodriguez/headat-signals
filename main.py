@@ -1,5 +1,5 @@
 import wfdb
 
-
-rec = wfdb.rdsamp("samples/aami3a")
-print(rec)
+file_folder = "data/apnea-ecg-database-1.0.0/"
+rec = wfdb.rdsamp(file_folder + "a01r")
+print(len(rec[0][1]))

@@ -47,6 +47,22 @@ If you choose the cloning method, please perform a prelinimary step: installing 
 
 **Remark**: If you want to clearly uninstall the module, please use: `pip uninstall headat`.
 
+## Supported export format
+
+- Excel
+- CSV
+- XML
+- JSON
+- Markdown
+- LaTeX
+- Parquet (Apache Parquet)
+- Pickle
+- SQLite
+
+**Remarks**
+- If you want to suggest a new supported format, please create a **new issue**
+- If you want to add your own version of a new exporter for WFDB data, please init a **new Pull Request**
+
 ## Resources 
 
 Here are some useful online resources in order to get a clear understanding of the .hea/.dat files format:
@@ -59,7 +75,7 @@ Here are some useful online resources in order to get a clear understanding of t
 ## License
 
 - *Developer & Maintener*: **Lucas RODRIGUEZ**
-- **Development date*: Since June 2022
+- *Development date*: June 2022 - ...
 
 
 *PhysioNet* is a repository of freely-available medical research data, managed by the MIT Laboratory for Computational Physiology.
