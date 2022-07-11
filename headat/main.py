@@ -64,12 +64,28 @@ class HDView:
         """
         pass
 
-    def get_total_views_counter() -> int:
+    def get_total_views_counter(self) -> int:
         """
         Function returning the total number of views initialized 
         since the execution of the program
         """
         return HDView.VIEWS_INITIALIZED_COUNTER
+
+    def get_export_extensions(self) -> list:
+        """
+        Function returning the array of the currently available
+        extensions supported by the tool's exporter
+        :return: list with specific types' extensions
+        """
+        return [AVAILABLE_EXPORT_TYPES[k]["ext"] for k in AVAILABLE_EXPORT_TYPES]
+
+    def get_export_types(self) -> list:
+        """
+        Function returning the array of the currently available
+        types supported by the tool's exporter
+        :return: list with specific types
+        """
+        return [k for k in AVAILABLE_EXPORT_TYPES]
 
 
 """
