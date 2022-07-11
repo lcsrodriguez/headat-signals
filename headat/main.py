@@ -11,6 +11,7 @@
 import pandas as pd
 import wfdb as wf
 import logging
+import os
 from .constants import *
 
 
@@ -26,6 +27,11 @@ class HDView:
         Constructor function initializing a new HDView object
         """
 
+        # Declaring main variables
+        self.record     = None
+        self.signals    = None
+        self.infos      = None
+
         # Parsing the arguments of the c-tor
         if not isinstance(record, str) or not isinstance(title, str):
             raise TypeError("Record and title must be string values.")
@@ -39,7 +45,6 @@ class HDView:
         if title == "":
             title = f"View #{HDView.VIEWS_INITIALIZED_COUNTER}"
 
-        self.record = record
         self.title = title
 
         # Registering the record name
@@ -60,6 +65,26 @@ class HDView:
         :rtype: bool
         :return: Boolean representing the success of the operation
         """
+        if record is None:
+            raise ValueError("record is None")
+
+        if not os.path.exists(record):
+            return False
+
+        try:
+            self.record = record
+            # Reading the record
+            read_rec = wf.rdsamp(record)
+            self.signals = read_rec[0]
+            self.infos = read_rec[1]
+        except:
+            raise Exception("Failure on the reading of the record")
+
+    def get_signals(self):
+        return self.signals
+
+    def get_infos(self):
+        return self.infos
 
         """
         if self.source_record is not None:
