@@ -47,21 +47,21 @@ If you choose the cloning method, please perform a prelinimary step: installing 
 
 **Remark**: If you want to clearly uninstall the module, please use: `pip uninstall headat`.
 
-## Supported export format
+## Supported export formats
 
-| Name      | Extension    | Description |
-|-----------|--------------|-------------|
-| Text file | .txt, .out   |             |
-| Excel     | .xslx        |             |
-| CSV       | .csv         |             |
-| JSON      | .json        |             |
-| XML       | .xml         |             |
-| Markdown  | .md          |             |
-| LaTeX     | .tex         |             |
-| Parquet   | .pqt         |             |
-| Pickle    | .pkl         |             |
-| SQLite    | .db, .sqlite |             |
-| MATLAB    | .mat         |             |
+| Name      | Extension    | Description                                                                                     |
+|-----------|--------------|-------------------------------------------------------------------------------------------------|
+| Text file | .txt, .out   | Standard text file                                                                              |
+| Excel     | .xslx        | MS Excel/OpenOffice Calc file                                                                   |
+| CSV       | .csv         | Better for data-science                                                                         |
+| JSON      | .json        | JSON file                                                                                       |
+| XML       | .xml         | Useful for                                                                                      |
+| Markdown  | .md          | Useful for quick report in Markdown                                                             |
+| LaTeX     | .tex         | Recommended for highly-detailed article in LaTeX                                                |
+| Parquet   | .pqt         | [Apache Parquet](https://parquet.apache.org/) format : highly recommended for HPC               |
+| Pickle    | .pkl         | For data serialization and unserialization (could be useful for such applications)              |
+| SQLite    | .db, .sqlite | Classic and light-weight file-based SQL RDBMS (can be relevant for requesting organized records |
+| MATLAB    | .mat         | For heavy computations on MATLAB programs (proprietary software)                                |
 
 
 
