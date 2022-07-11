@@ -1,32 +1,35 @@
 """
 
-        ██╗  ██╗███████╗ █████╗ ██████╗  █████╗ ████████╗
-        ██║  ██║██╔════╝██╔══██╗██╔══██╗██╔══██╗╚══██╔══╝
-        ███████║█████╗  ███████║██║  ██║███████║   ██║   
-        ██╔══██║██╔══╝  ██╔══██║██║  ██║██╔══██║   ██║   
-        ██║  ██║███████╗██║  ██║██████╔╝██║  ██║   ██║   
-        ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚═════╝ ╚═╝  ╚═╝   ╚═╝   
+          _   _ _____    _    ____    _  _____
+         | | | | ____|  / \  |  _ \  / \|_   _|
+         | |_| |  _|   / _ \ | | | |/ _ \ | |
+         |  _  | |___ / ___ \| |_| / ___ \| |
+         |_| |_|_____/_/   \_\____/_/   \_\_|
 
             Developer: Lucas RODRIGUEZ (2022)
 """
-import wfdb
+import pandas as pd
+import wfdb as wf
 
 
-class HDView():
+class HDView:
     """
-    Main class 
+    Main class representing a HD View (1 WFDB record)
     """
     VIEWS_INITIALIZED_COUNTER = 0
     VIEWS_TITLES = []
 
-    def __init__(self, source: str = None, title: str = None) -> None:
+    def __init__(self, source_record: str = None, title: str = None) -> None:
         """
         Constructor function initializing a new HDView object
         """
 
         # Parsing the arguments of the c-tor
-        self.source = source
+        self.source_record = None
         self.title = title if title != None else f"HDView #{HDView.VIEWS_INITIALIZED_COUNTER}"
+
+        # Adding a record
+        self.add_record(source_record)
 
         # Increment the number of initialized views in order to get a count
         HDView.VIEWS_INITIALIZED_COUNTER += 1
@@ -34,14 +37,18 @@ class HDView():
 
         print("Logging the creation of a new HDView")
 
-    def add_record(self):
+    def add_record(self, source_record: str = None):
         """
         Function allowing user to add a record to the view
         """
-        if self.source != None:
+        print("ADD")
+        self.source_record = source_record
+        if self.source_record is not None:
+            pass
             # TODO : Add folder check
             # TODO : Add if there is a .hea and a corresponding .dat file
-            pass
+        else:
+            raise Exception("The record path to file is empty or not valid.")
 
     def t_csv(self):
         """
@@ -89,15 +96,9 @@ class HDView():
 """
 
 
-class HDGroup():
+class HDGroup:
     """
     HDGroup class
     """
     pass
 
-
-"""
-file_folder = "data/apnea-ecg-database-1.0.0/"
-rec = wfdb.rdsamp(file_folder + "a01r")
-print(len(rec[0][1]))
-"""

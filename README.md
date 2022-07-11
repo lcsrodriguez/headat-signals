@@ -14,7 +14,7 @@ Official GitHub repository for **HEADAT** library: `.hea`/`.dat` files processin
 PhysioBank has adopted an unified and well-structured file format in order to store and organize records and signals. The entire format system description is freely available in an highly-documentated website (check Section **Resources**)
 
 
-**HEADAT** is a fully-operational Python library used for extracting, processing, converting and exporting signals and records data (under `.hea` and `.dat` format) within specified in-program format (DataFrames, Series, ...) or out-of-file on-disk or database files (see Section **Supported Export format** for more details) 
+**HEADAT** is a light-weight, fully-operational Python library used for extracting, processing, converting and exporting signals and records data (under `.hea` and `.dat` format) within specified in-program format (DataFrames, Series, ...) or out-of-file on-disk or database files (see Section **Supported Export format** for more details) 
 
 **HEADAT** has one goal : *make ECG-related signals processing **easier** and **funnier*** by :
 - embedding the core functions and datasets of WFDB/ECG signals within the Python data-science ecosystem : NumPy, SciPy, Bokeh, Scikit-Learn, TensorFlow, ...
