@@ -66,10 +66,7 @@ class HDView:
         :return: Boolean representing the success of the operation
         """
         if record is None:
-            raise ValueError("record is None")
-
-        if not os.path.exists(record):
-            return False
+            raise ValueError("record cannot be NoneType")
 
         try:
             self.record = record
@@ -77,14 +74,37 @@ class HDView:
             read_rec = wf.rdsamp(record)
             self.signals = read_rec[0]
             self.infos = read_rec[1]
+            return True
         except:
             raise Exception("Failure on the reading of the record")
+
+    def get_record_files(self, unique: bool = True) -> list:
+        """
+        Function returning the relative path of signal filenames
+        :param unique: Boolean. If set to True, get_record_files(True) returns a list of unique (non-redundant items) filenames
+        :rtype: list
+        :return: List of signal filenames
+        """
+        try:
+            record_hea_filename = self.record + ".hea"
+            with open(record_hea_filename, "r") as f:
+                files = f.readlines()[1 : ]
+            if unique:
+                return list(set([k.split(" ")[0] for k in files]))
+            else:
+                return [k.split(" ")[0] for k in files]
+        except:
+            raise Exception("Unable to find accurate signal files")
+
 
     def get_signals(self):
         return self.signals
 
     def get_infos(self):
         return self.infos
+
+    def t_frame(self):
+        return pd.DataFrame(self.get_signals())
 
         """
         if self.source_record is not None:
