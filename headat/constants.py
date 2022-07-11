@@ -1,7 +1,7 @@
 AVAILABLE_EXPORT_TYPES = {
     "text_txt": {
         "ext": "txt",
-        "method": "custom"
+        "method": "custom",
     },
     "text_out": {
         "ext": "out",
@@ -10,7 +10,8 @@ AVAILABLE_EXPORT_TYPES = {
         "ext": "dat",
     },
     "excel": {
-        "ext": "xlsx"
+        "ext": "xlsx",
+        "method": "to_excel",
     },
     "csv": {
         "ext": "csv"

@@ -68,6 +68,13 @@ class HDView:
         print("Instance killed")
         return True
 
+    def __repr__(self):
+        """
+
+        :return:
+        """
+        # TODO Implement
+
     def add_record(self, record: str = None) -> bool:
         """
         Function allowing user to add a record to the view
@@ -131,6 +138,19 @@ class HDView:
         """
         return self.infos
 
+    # ----------------------------------------------------------------
+    #                           EXPORT METHODS
+
+    def convert(self, format: str = "csv") -> bool:
+        """
+        Intermediary function converting the signals data into the desired/specified data type
+        :param format: Format type (conversion output)
+        :return: Boolean indicating if the conversion and the
+                 storage steps have been well-performed
+        """
+        # TODO Implement the convert()
+        return True # Return a boolean
+
     def t_frame(self) -> pd.DataFrame:
         """
         Function returning a converted array as a Pandas DataFrame
@@ -138,20 +158,20 @@ class HDView:
         """
         return pd.DataFrame(self.get_signals())
 
-    # ----------------------------------------------------------------
-    #                           EXPORT METHODS
+    def t_numpy(self) -> np.ndarray:
+        """
+        Function returning a converted Numpy ndarray of signals series
+        :return: Numpy ndarrays
+        """
+        return self.signals
 
-    def t_csv(self):
-        """
-        Function converting the record to the CSV format
-        """
-        pass
+    def t_csv(self) -> bool:
+        """ Function converting the record to the CSV format """
+        return self.convert("xlsx")
 
-    def t_xlsx(self):
-        """
-        Function converting the record to the XLSX format
-        """
-        pass
+    def t_xlsx(self) -> bool:
+        """ Function converting the record to the XLSX format """
+        return self.convert("xlsx")
 
     # ----------------------------------------------------------------
     #                           GENERIC METHODS
