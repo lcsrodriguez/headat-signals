@@ -211,8 +211,6 @@ class HDView:
     ------------------------------------------------
     1 or more records <-> 1 HDGroup ==> Goal: statistical comparison
         - do the same as with 1 HDView but concat the multiple records side-by-side 
-
-
 """
 
 

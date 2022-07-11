@@ -1,6 +1,7 @@
 AVAILABLE_EXPORT_TYPES = {
     "text_txt": {
         "ext": "txt",
+        "method": "custom"
     },
     "text_out": {
         "ext": "out",

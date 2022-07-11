@@ -47,6 +47,20 @@ If you choose the cloning method, please perform a prelinimary step: installing 
 
 **Remark**: If you want to clearly uninstall the module, please use: `pip uninstall headat`.
 
+
+## Supported load formats
+
+| Class     | Type        | Description                                                              |
+|-----------|-------------|--------------------------------------------------------------------------|
+| Raw array | `list`      | "Pure" Python array (list of lists)                                      |
+| Raw set   | `set`       | "Pure" Python set (set of lists)                                         |
+| Raw dict  | `dict`      | "Pure" Python dict (dict of lists)                                       |
+| Numpy     | `ndarray`   | Numpy n-dimensions array (for fast computations) (underlying C-layers)   |
+| Pandas    | `Series`    | Pandas Series conversion (for multiple signals, return a list of Series) |
+| Pandas    | `DataFrame` | Pandas DataFrame conversion (best solution for further data processing)  |
+| HDFS      | -           | Hadoop Distributed File System (HDFS) *(using PyArrow)*                  |
+| RDD       | -           | Resilient Distributed Datasets (RDD) *(using PySpark)*                   |
+
 ## Supported export formats
 
 | Name      | Extension      | Description                                                                                     |
@@ -62,6 +76,8 @@ If you choose the cloning method, please perform a prelinimary step: installing 
 | Pickle    | `.pkl`         | For data serialization and unserialization (could be useful for such applications)              |
 | SQLite    | `.db, .sqlite` | Classic and light-weight file-based SQL RDBMS (can be relevant for requesting organized records |
 | MATLAB    | `.mat`         | For heavy computations on MATLAB programs (proprietary software)                                |
+| WAV       | `.wav`         | -                                                                                               |
+
 
 
 
