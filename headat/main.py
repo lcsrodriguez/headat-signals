@@ -10,7 +10,7 @@
 """
 import pandas as pd
 import wfdb as wf
-
+from .constants import *
 
 class HDView:
     """
@@ -43,12 +43,14 @@ class HDView:
         """
         print("ADD")
         self.source_record = source_record
+        """
         if self.source_record is not None:
             pass
             # TODO : Add folder check
             # TODO : Add if there is a .hea and a corresponding .dat file
         else:
             raise Exception("The record path to file is empty or not valid.")
+        """
 
     def t_csv(self):
         """

@@ -1,4 +1,4 @@
-EXPORT_FICHIERS = {
+AVAILABLE_EXPORT_TYPES = {
     "text_txt": {
         "ext": "txt",
     },

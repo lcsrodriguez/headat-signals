@@ -66,7 +66,7 @@ If you choose the cloning method, please perform a prelinimary step: installing 
 
 
 **Remarks**
-- If you want to suggest a new supported format, please create a **new issue**
+- If you want to suggest a new supported format, please create a **new issue** with the *NEW EXPORT FORMAT* label.
 - If you want to add your own version of a new exporter for WFDB data, please init a **new Pull Request**
 
 ## Resources 
