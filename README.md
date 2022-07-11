@@ -49,15 +49,21 @@ If you choose the cloning method, please perform a prelinimary step: installing 
 
 ## Supported export format
 
-- Excel
-- CSV
-- XML
-- JSON
-- Markdown
-- LaTeX
-- Parquet (Apache Parquet)
-- Pickle
-- SQLite
+| Name      | Extension    | Description |
+|-----------|--------------|-------------|
+| Text file | .txt, .out   |             |
+| Excel     | .xslx        |             |
+| CSV       | .csv         |             |
+| JSON      | .json        |             |
+| XML       | .xml         |             |
+| Markdown  | .md          |             |
+| LaTeX     | .tex         |             |
+| Parquet   | .pqt         |             |
+| Pickle    | .pkl         |             |
+| SQLite    | .db, .sqlite |             |
+| MATLAB    | .mat         |             |
+
+
 
 **Remarks**
 - If you want to suggest a new supported format, please create a **new issue**
