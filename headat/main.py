@@ -68,12 +68,12 @@ class HDView:
         print("Instance killed")
         return True
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """
-
-        :return:
+        Function representing as string the HDView object
+        :return: Representation string
         """
-        # TODO Implement
+        return f"HDView - [{self.title}] - #rec: {self.record}"
 
     def add_record(self, record: str = None) -> bool:
         """
