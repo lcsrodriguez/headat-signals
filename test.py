@@ -11,4 +11,6 @@ file_folder = "data/apnea-ecg-database-1.0.0/"
 
 
 a = HDView(file_folder + "a01r")
-print(a.get_record_files())
+b = a.get_signals()
+
+print(type(b))

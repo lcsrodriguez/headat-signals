@@ -8,6 +8,7 @@
 
             Developer: Lucas RODRIGUEZ (2022)
 """
+import numpy as np
 import pandas as pd
 import wfdb as wf
 import logging
@@ -28,9 +29,9 @@ class HDView:
         """
 
         # Declaring main variables
-        self.record     = None
-        self.signals    = None
-        self.infos      = None
+        self.record = None
+        self.signals = None
+        self.infos = None
 
         # Parsing the arguments of the c-tor
         if not isinstance(record, str) or not isinstance(title, str):
@@ -57,6 +58,15 @@ class HDView:
         :return: Representation string
         """
         return f"HDView - [{self.title}] - #rec: {self.record}"
+
+    def __del__(self) -> bool:
+        """
+        Function called when the Garbage Collector is summoned
+        to kill a selected instance of HDView
+        :return: bool
+        """
+        print("Instance killed")
+        return True
 
     def add_record(self, record: str = None) -> bool:
         """
@@ -96,24 +106,40 @@ class HDView:
         except:
             raise Exception("Unable to find accurate signal files")
 
-
-    def get_signals(self):
+    def get_signals(self) -> np.ndarray:
+        """
+        Function returning the array of signals as Numpy ndarray
+        :return: Numpy ndarray of signals where
+            - 1 row = 1 record (1 observation)
+            - 1 column = 1 signal
+        """
         return self.signals
 
-    def get_infos(self):
+    def get_raw_signals(self) -> list:
+        """
+        Function returing a "pure" Python list of lists (kind of matrix)
+        :return: List of lists Python representing the array of signals where
+            - 1 row = 1 record (1 observation)
+            - 1 column = 1 signal
+        """
+        return self.signals.tolist()
+
+    def get_infos(self) -> dict:
+        """
+        Function returning information about studied signals
+        :return: Dictionary
+        """
         return self.infos
 
-    def t_frame(self):
+    def t_frame(self) -> pd.DataFrame:
+        """
+        Function returning a converted array as a Pandas DataFrame
+        :return: Pandas DataFrame of the underlying signals
+        """
         return pd.DataFrame(self.get_signals())
 
-        """
-        if self.source_record is not None:
-            pass
-            # TODO : Add folder check
-            # TODO : Add if there is a .hea and a corresponding .dat file
-        else:
-            raise Exception("The record path to file is empty or not valid.")
-        """
+    # ----------------------------------------------------------------
+    #                           EXPORT METHODS
 
     def t_csv(self):
         """
@@ -126,6 +152,9 @@ class HDView:
         Function converting the record to the XLSX format
         """
         pass
+
+    # ----------------------------------------------------------------
+    #                           GENERIC METHODS
 
     def get_total_views_counter(self) -> int:
         """
@@ -158,6 +187,7 @@ class HDView:
         import hashlib
         BLOCKSIZE = 65536
         hasher = hashlib.md5()
+        # TODO : Complete function (check Twitter post)
 
 
 """
