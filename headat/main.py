@@ -10,7 +10,9 @@
 """
 import pandas as pd
 import wfdb as wf
+import logging
 from .constants import *
+
 
 class HDView:
     """
@@ -19,30 +21,46 @@ class HDView:
     VIEWS_INITIALIZED_COUNTER = 0
     VIEWS_TITLES = []
 
-    def __init__(self, source_record: str = None, title: str = None) -> None:
+    def __init__(self, record: str, title: str = "") -> None:
         """
         Constructor function initializing a new HDView object
         """
 
         # Parsing the arguments of the c-tor
-        self.source_record = None
-        self.title = title if title != None else f"HDView #{HDView.VIEWS_INITIALIZED_COUNTER}"
-
-        # Adding a record
-        self.add_record(source_record)
+        if not isinstance(record, str) or not isinstance(title, str):
+            raise TypeError("Record and title must be string values.")
+        if record == "":
+            raise ValueError("Record name must be a valid one : not empty")
 
         # Increment the number of initialized views in order to get a count
         HDView.VIEWS_INITIALIZED_COUNTER += 1
-        HDView.VIEWS_TITLES.append(self.title)
 
-        print("Logging the creation of a new HDView")
+        # Formatting HDView's title
+        if title == "":
+            title = f"View #{HDView.VIEWS_INITIALIZED_COUNTER}"
 
-    def add_record(self, source_record: str = None):
+        self.record = record
+        self.title = title
+
+        # Registering the record name
+        if not self.add_record(record):
+            raise Exception("The submitted record name is not valid. Please try it again")
+
+    def __str__(self) -> str:
+        """
+        Function representing as string the HDView object
+        :return: Representation string
+        """
+        return f"HDView - [{self.title}] - #rec: {self.record}"
+
+    def add_record(self, record: str = None) -> bool:
         """
         Function allowing user to add a record to the view
+        :param record: Record name
+        :rtype: bool
+        :return: Boolean representing the success of the operation
         """
-        print("ADD")
-        self.source_record = source_record
+
         """
         if self.source_record is not None:
             pass
@@ -86,6 +104,15 @@ class HDView:
         :return: list with specific types
         """
         return [k for k in AVAILABLE_EXPORT_TYPES]
+
+    def get_records_hashes(self):
+        """
+        Function computing and returning the different hashes of the record files.
+        :return:
+        """
+        import hashlib
+        BLOCKSIZE = 65536
+        hasher = hashlib.md5()
 
 
 """
