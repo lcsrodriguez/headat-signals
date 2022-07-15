@@ -52,5 +52,5 @@ formats = {
         "method": "custom"
     }
 }
-
+EXPORT_FOLDERS = "out"
 EXCEL_ROW_LIMIT = 1048576 - 2

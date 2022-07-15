@@ -16,66 +16,12 @@
 import numpy as np
 import pandas as pd
 import wfdb as wf
-import datetime
-import logging
-import os
-from .constants import *
+from lib.functions import *
 
-
-EXPORT_FOLDERS = "out"
 if os.path.exists(EXPORT_FOLDERS) and os.path.isdir(EXPORT_FOLDERS):
     pass
 else:
     os.mkdir(EXPORT_FOLDERS)
-
-
-def get_current_datetime() -> str:
-    """
-    Function returning the current datetime in a string representation
-    :return: String representation of the current datetime
-    """
-    return datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S+%f")
-
-
-def make_view_directory(out_folder: str = EXPORT_FOLDERS) -> str:
-    """
-    Function creating a dedicated directory for an HDView inside the out/ folder
-    :param out_folder: If not default, specified parent folder
-    :return: String of the folder pathname; Exception if error has occured
-    """
-    path_filename = f"{out_folder}/view_{get_current_datetime()}/"
-    if not os.path.isdir(path_filename) or not os.path.exists(path_filename):
-        try:
-            os.mkdir(path_filename)
-            return path_filename
-        except Exception as e:
-            raise Exception("An error has occured during the folder creation process.\nError details: {e}")
-
-
-def get_total_views_counter() -> int:
-    """
-    Function returning the total number of views initialized
-    since the execution of the program
-    """
-    return HDView.VIEWS_INITIALIZED_COUNTER
-
-
-def get_export_types() -> list:
-    """
-    Function returning the array of the currently available
-    types supported by the tool's exporter
-    :return: list with specific types
-    """
-    return [k for k in formats]
-
-
-def get_export_extensions() -> list:
-    """
-    Function returning the array of the currently available
-    extensions supported by the tool's exporter
-    :return: list with specific types' extensions
-    """
-    return [formats[k]["extension"] for k in formats]
 
 
 class HDView:
@@ -141,6 +87,13 @@ class HDView:
         :return: Representation string
         """
         return f"HDView - [{self.title}] - #rec: {self.record}"
+
+    def get_total_views_counter(self) -> int:
+        """
+        Function returning the total number of views initialized
+        since the execution of the program
+        """
+        return HDView.VIEWS_INITIALIZED_COUNTER
 
     def add_record(self, record: str = None) -> bool:
         """

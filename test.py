@@ -1,7 +1,4 @@
-import pandas as pd
-
 from headat.main import *
-
 
 file_folder = "data/apnea-ecg-database-1.0.0/"
 
