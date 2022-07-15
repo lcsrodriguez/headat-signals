@@ -22,9 +22,9 @@ import os
 from .constants import *
 
 
-EXPORT_FOLDERS = "out/"
+EXPORT_FOLDERS = "out"
 if os.path.exists(EXPORT_FOLDERS) and os.path.isdir(EXPORT_FOLDERS):
-    print("ok folder")
+    pass
 else:
     os.mkdir(EXPORT_FOLDERS)
 
@@ -34,7 +34,22 @@ def get_current_datetime() -> str:
     Function returning the current datetime in a string representation
     :return: String representation of the current datetime
     """
-    return datetime.datetime.now().strftime("%Y-%m-%d_%H:%M:%S+%f")
+    return datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S+%f")
+
+
+def make_view_directory(out_folder: str = EXPORT_FOLDERS) -> str:
+    """
+    Function creating a dedicated directory for an HDView inside the out/ folder
+    :param out_folder: If not default, specified parent folder
+    :return: String of the folder pathname; Exception if error has occured
+    """
+    path_filename = f"{out_folder}/view_{get_current_datetime()}/"
+    if not os.path.isdir(path_filename) or not os.path.exists(path_filename):
+        try:
+            os.mkdir(path_filename)
+            return path_filename
+        except Exception as e:
+            raise Exception("An error has occured during the folder creation process.\nError details: {e}")
 
 
 def get_total_views_counter() -> int:
@@ -95,6 +110,10 @@ class HDView:
 
         # Registering the HDView title
         self.title = title
+
+        # Creation of the folder
+        view_folder_name = make_view_directory()
+        self.folder_name = view_folder_name
 
         # Registering the record name
         if not self.add_record(record):
@@ -218,24 +237,26 @@ class HDView:
 
         format = format.lower()
         # Filtering values
+        print(format)
         if format not in get_export_extensions():
             raise ValueError("The format is not yet supported by the system. Please consider initiating a GitHub issue.")
 
         print(f"Asked format : {format}")
 
+        df = self.t_frame()
         # Converting the view in the specified extension
         try:
+            if formats[format]["method"] == "custom":
+                print(f"Not yet supported for {format}")
+                return False
             if format in ["json", "pickle"]:
-                """
-                Erreur avec le format JSON
-                    'index=False' is only valid when 'orient' is 'split' or 'table'
-                """
-                formats[format]["method"](EXPORT_FOLDERS + OUT_FOLDER + f"out_gw_{gateway_id}_{date_now}.{formats[format]['extension']}")
+                # Error with the JSON format: 'index=False' is only valid when 'orient' is 'split' or 'table'
+                eval(f"df.{formats[format]['method']}(self.folder_name + f'out_{get_current_datetime()}.{formats[format]['extension']}')")
             elif format == "latex":
-                formats[format]["method"](SIM_URL + OUT_FOLDER + f"out_gw_{gateway_id}_{date_now}.{formats[format]['extension']}")
+                eval(f"df.{formats[format]['method']}(self.folder_name + f'out_{get_current_datetime()}.{formats[format]['extension']}')")
             else:
-                formats[format]["method"](SIM_URL + OUT_FOLDER + f"out_gw_{gateway_id}_{date_now}.{formats[format]['extension']}", index=False)
-            print(f"Export terminé au format {format}")
+                eval(f"df.{formats[format]['method']}(self.folder_name + f'out_{get_current_datetime()}.{formats[format]['extension']}', index=False)")
+            print(f"Export finished for {format} format")
             return True
         except Exception as e:
             print(e)

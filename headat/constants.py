@@ -11,7 +11,7 @@ formats = {
         "extension": "dat",
         "method": "custom",
     },
-    "excel": {
+    "xlsx": {
         "extension": "xlsx",
         "method": "to_excel",
     },
@@ -52,3 +52,5 @@ formats = {
         "method": "custom"
     }
 }
+
+EXCEL_ROW_LIMIT = 1048576 - 2
