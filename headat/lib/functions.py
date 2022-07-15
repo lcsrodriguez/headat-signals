@@ -1,7 +1,9 @@
 from .constants import *
 import datetime
 import os
-
+import warnings
+# Export routine to LaTeX generate a FutureWarning which has to be silenced
+warnings.simplefilter(action='ignore', category=FutureWarning)
 
 def get_current_datetime() -> str:
     """

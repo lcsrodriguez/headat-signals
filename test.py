@@ -9,4 +9,4 @@ print(a.get_infos())
 c = a.t_frame()
 print(c.head(20))
 
-print(c.to_markdown("out/test.md"))
+print(c.to_latex("out/test.tex"))
