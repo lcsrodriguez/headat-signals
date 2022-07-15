@@ -16,7 +16,7 @@
 import numpy as np
 import pandas as pd
 import wfdb as wf
-from lib.functions import *
+from .lib.functions import *
 
 if os.path.exists(EXPORT_FOLDERS) and os.path.isdir(EXPORT_FOLDERS):
     pass
@@ -115,6 +115,8 @@ class HDView:
             # Filtering the signals and additional information from the signals using wfdb library
             self.signals = read_rec[0]
             self.infos = read_rec[1]
+            self.columns = [k.lower().replace(" ", "_") for k in self.infos["sig_name"]]
+            print(self.columns)
             return True
         except Exception as e:
             raise Exception(f"Failure on the reading of the record: \nError details : {e}")
@@ -222,7 +224,7 @@ class HDView:
         Function returning a converted array as a Pandas DataFrame
         :return: Pandas DataFrame of the underlying signals
         """
-        return pd.DataFrame(self.get_signals())
+        return pd.DataFrame(self.get_signals(), columns=self.columns)
 
     def t_numpy(self) -> np.ndarray:
         """
