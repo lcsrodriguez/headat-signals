@@ -6,7 +6,12 @@
          |  _  | |___ / ___ \| |_| / ___ \| |
          |_| |_|_____/_/   \_\____/_/   \_\_|
 
-            Developer: Lucas RODRIGUEZ (2022)
+            Developer           :   Lucas RODRIGUEZ
+            Maintainer          :   Lucas RODRIGUEZ
+            Development date    :   June 2022 - ...
+            File description    :   HDView implementation
+            Official Git repo   :   https://github.com/lcsrodriguez/headat-signals
+
 """
 import numpy as np
 import pandas as pd
