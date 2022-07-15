@@ -16,9 +16,25 @@
 import numpy as np
 import pandas as pd
 import wfdb as wf
+import datetime
 import logging
 import os
 from .constants import *
+
+
+EXPORT_FOLDERS = "out/"
+if os.path.exists(EXPORT_FOLDERS) and os.path.isdir(EXPORT_FOLDERS):
+    print("ok folder")
+else:
+    os.mkdir(EXPORT_FOLDERS)
+
+
+def get_current_datetime() -> str:
+    """
+    Function returning the current datetime in a string representation
+    :return: String representation of the current datetime
+    """
+    return datetime.datetime.now().strftime("%Y-%m-%d_%H:%M:%S+%f")
 
 
 def get_total_views_counter() -> int:
@@ -35,7 +51,7 @@ def get_export_types() -> list:
     types supported by the tool's exporter
     :return: list with specific types
     """
-    return [k for k in AVAILABLE_EXPORT_TYPES]
+    return [k for k in formats]
 
 
 def get_export_extensions() -> list:
@@ -44,7 +60,7 @@ def get_export_extensions() -> list:
     extensions supported by the tool's exporter
     :return: list with specific types' extensions
     """
-    return [AVAILABLE_EXPORT_TYPES[k]["ext"] for k in AVAILABLE_EXPORT_TYPES]
+    return [formats[k]["extension"] for k in formats]
 
 
 class HDView:
@@ -177,6 +193,13 @@ class HDView:
     # ----------------------------------------------------------------
     #                           EXPORT METHODS
 
+    def check_registered_record(self) -> bool:
+        """
+        Function returning whether a record has been registered to the view
+        :return: Boolean
+        """
+        return (self.record is not None) and (self.signals is not None) and (self.infos is not None)
+
     def convert(self, format: str = "csv") -> bool:
         """
         Intermediary function converting the signals data into the desired/specified data type
@@ -184,8 +207,41 @@ class HDView:
         :return: Boolean indicating if the conversion and the
                  storage steps have been well-performed
         """
-        # TODO Implement the convert()
-        return True # Return a boolean
+
+        # Checking if a record is registered
+        if not self.check_registered_record():
+            raise Exception("No record has been registered. Please call the .add_record() method before")
+
+        # Filtering (security check)
+        if not isinstance(format, str):
+            raise TypeError("The format parameter needs to be represented as a non-empty string.")
+
+        format = format.lower()
+        # Filtering values
+        if format not in get_export_extensions():
+            raise ValueError("The format is not yet supported by the system. Please consider initiating a GitHub issue.")
+
+        print(f"Asked format : {format}")
+
+        # Converting the view in the specified extension
+        try:
+            if format in ["json", "pickle"]:
+                """
+                Erreur avec le format JSON
+                    'index=False' is only valid when 'orient' is 'split' or 'table'
+                """
+                formats[format]["method"](EXPORT_FOLDERS + OUT_FOLDER + f"out_gw_{gateway_id}_{date_now}.{formats[format]['extension']}")
+            elif format == "latex":
+                formats[format]["method"](SIM_URL + OUT_FOLDER + f"out_gw_{gateway_id}_{date_now}.{formats[format]['extension']}")
+            else:
+                formats[format]["method"](SIM_URL + OUT_FOLDER + f"out_gw_{gateway_id}_{date_now}.{formats[format]['extension']}", index=False)
+            print(f"Export terminé au format {format}")
+            return True
+        except Exception as e:
+            print(e)
+            return False
+
+
 
     def t_frame(self) -> pd.DataFrame:
         """

@@ -1,4 +1,4 @@
-AVAILABLE_EXPORT_TYPES = {
+formats = {
     "txt": {
         "extension": "txt",
         "method": "custom",
