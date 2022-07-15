@@ -70,7 +70,7 @@ If you choose the cloning method, please perform a prelinimary step: installing 
 | CSV       | `.csv`         | Better for data-science                                                                         |   ✅   |
 | JSON      | `.json`        | JSON file                                                                                       |   ✅   |
 | XML       | `.xml`         | Useful for XML parsing                                                                          |   ✅   |
-| Markdown  | `.md`          | Useful for quick report in Markdown                                                             |       |
+| Markdown  | `.md`          | Useful for quick report in Markdown                                                             |   ✅   |
 | LaTeX     | `.tex`         | Recommended for highly-detailed article in LaTeX                                                |       |
 | Parquet   | `.pqt`         | [Apache Parquet](https://parquet.apache.org/) format : highly recommended for HPC               |       |
 | Pickle    | `.pkl`         | For data serialization and unserialization (could be useful for such applications)              |       |
