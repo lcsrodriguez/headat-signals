@@ -48,35 +48,35 @@ If you choose the cloning method, please perform a prelinimary step: installing 
 **Remark**: If you want to clearly uninstall the module, please use: `pip uninstall headat`.
 
 
-## Supported load formats
+## List of in-program types
 
-| Class     | Type        | Description                                                              |
-|-----------|-------------|--------------------------------------------------------------------------|
-| Raw array | `list`      | "Pure" Python array (list of lists)                                      |
-| Raw set   | `set`       | "Pure" Python set (set of lists)                                         |
-| Raw dict  | `dict`      | "Pure" Python dict (dict of lists)                                       |
-| Numpy     | `ndarray`   | Numpy n-dimensions array (for fast computations) (underlying C-layers)   |
-| Pandas    | `Series`    | Pandas Series conversion (for multiple signals, return a list of Series) |
-| Pandas    | `DataFrame` | Pandas DataFrame conversion (best solution for further data processing)  |
-| HDFS      | -           | Hadoop Distributed File System (HDFS) *(using PyArrow)*                  |
-| RDD       | -           | Resilient Distributed Datasets (RDD) *(using PySpark)*                   |
+| Class     | Type        | Description                                                              | Ok ? |
+|-----------|-------------|--------------------------------------------------------------------------|:-----|
+| Raw array | `list`      | "Pure" Python array (list of lists)                                      |      |
+| Raw set   | `set`       | "Pure" Python set (set of lists)                                         |      |
+| Raw dict  | `dict`      | "Pure" Python dict (dict of lists)                                       |      |
+| Numpy     | `ndarray`   | Numpy n-dimensions array (for fast computations) (underlying C-layers)   |      |
+| Pandas    | `Series`    | Pandas Series conversion (for multiple signals, return a list of Series) |      |
+| Pandas    | `DataFrame` | Pandas DataFrame conversion (best solution for further data processing)  |      |
+| HDFS      | -           | Hadoop Distributed File System (HDFS) *(using PyArrow)*                  |      |
+| RDD       | -           | Resilient Distributed Datasets (RDD) *(using PySpark)*                   |      |
 
-## Supported export formats
+## List of export formats
 
-| Name      | Extension      | Description                                                                                     |
-|-----------|----------------|-------------------------------------------------------------------------------------------------|
-| Text file | `.txt, .out`   | Standard text file                                                                              |
-| Excel     | `.xslx`        | MS Excel/OpenOffice Calc file                                                                   |
-| CSV       | `.csv`         | Better for data-science                                                                         |
-| JSON      | `.json`        | JSON file                                                                                       |
-| XML       | `.xml`         | Useful for                                                                                      |
-| Markdown  | `.md`          | Useful for quick report in Markdown                                                             |
-| LaTeX     | `.tex`         | Recommended for highly-detailed article in LaTeX                                                |
-| Parquet   | `.pqt`         | [Apache Parquet](https://parquet.apache.org/) format : highly recommended for HPC               |
-| Pickle    | `.pkl`         | For data serialization and unserialization (could be useful for such applications)              |
-| SQLite    | `.db, .sqlite` | Classic and light-weight file-based SQL RDBMS (can be relevant for requesting organized records |
-| MATLAB    | `.mat`         | For heavy computations on MATLAB programs (proprietary software)                                |
-| WAV       | `.wav`         | -                                                                                               |
+| Name      | Extension      | Description                                                                                     | Ok ? |
+|-----------|----------------|-------------------------------------------------------------------------------------------------|:----:|
+| Text file | `.txt, .out`   | Standard text file                                                                              |      |
+| Excel     | `.xslx`        | MS Excel/OpenOffice Calc file                                                                   |      |
+| CSV       | `.csv`         | Better for data-science                                                                         |  ✅   |
+| JSON      | `.json`        | JSON file                                                                                       |  ✅   |
+| XML       | `.xml`         | Useful for XML parsing                                                                          |      |
+| Markdown  | `.md`          | Useful for quick report in Markdown                                                             |      |
+| LaTeX     | `.tex`         | Recommended for highly-detailed article in LaTeX                                                |      |
+| Parquet   | `.pqt`         | [Apache Parquet](https://parquet.apache.org/) format : highly recommended for HPC               |      |
+| Pickle    | `.pkl`         | For data serialization and unserialization (could be useful for such applications)              |      |
+| SQLite    | `.db, .sqlite` | Classic and light-weight file-based SQL RDBMS (can be relevant for requesting organized records |      |
+| MATLAB    | `.mat`         | For heavy computations on MATLAB programs (proprietary software)                                |      |
+| WAV       | `.wav`         | -                                                                                               |      |
 
 
 
