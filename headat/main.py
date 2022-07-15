@@ -21,9 +21,35 @@ import os
 from .constants import *
 
 
+def get_total_views_counter() -> int:
+    """
+    Function returning the total number of views initialized
+    since the execution of the program
+    """
+    return HDView.VIEWS_INITIALIZED_COUNTER
+
+
+def get_export_types() -> list:
+    """
+    Function returning the array of the currently available
+    types supported by the tool's exporter
+    :return: list with specific types
+    """
+    return [k for k in AVAILABLE_EXPORT_TYPES]
+
+
+def get_export_extensions() -> list:
+    """
+    Function returning the array of the currently available
+    extensions supported by the tool's exporter
+    :return: list with specific types' extensions
+    """
+    return [AVAILABLE_EXPORT_TYPES[k]["ext"] for k in AVAILABLE_EXPORT_TYPES]
+
+
 class HDView:
     """
-    Main class representing a HD View (1 WFDB record)
+    Main class representing 1 HD View (1 WFDB record)
     """
     VIEWS_INITIALIZED_COUNTER = 0
     VIEWS_TITLES = []
@@ -47,10 +73,11 @@ class HDView:
         # Increment the number of initialized views in order to get a count
         HDView.VIEWS_INITIALIZED_COUNTER += 1
 
-        # Formatting HDView's title
+        # Formatting HDView's title if title is not defined by the user
         if title == "":
             title = f"View #{HDView.VIEWS_INITIALIZED_COUNTER}"
 
+        # Registering the HDView title
         self.title = title
 
         # Registering the record name
@@ -91,14 +118,18 @@ class HDView:
             raise ValueError("record cannot be NoneType")
 
         try:
+            # Registering the record on global scope
             self.record = record
+
             # Reading the record
             read_rec = wf.rdsamp(record)
+
+            # Filtering the signals and additional information from the signals using wfdb library
             self.signals = read_rec[0]
             self.infos = read_rec[1]
             return True
-        except:
-            raise Exception("Failure on the reading of the record")
+        except Exception as e:
+            raise Exception(f"Failure on the reading of the record: \nError details : {e}")
 
     def get_record_files(self, unique: bool = True) -> list:
         """
@@ -180,29 +211,6 @@ class HDView:
 
     # ----------------------------------------------------------------
     #                           GENERIC METHODS
-
-    def get_total_views_counter(self) -> int:
-        """
-        Function returning the total number of views initialized 
-        since the execution of the program
-        """
-        return HDView.VIEWS_INITIALIZED_COUNTER
-
-    def get_export_extensions(self) -> list:
-        """
-        Function returning the array of the currently available
-        extensions supported by the tool's exporter
-        :return: list with specific types' extensions
-        """
-        return [AVAILABLE_EXPORT_TYPES[k]["ext"] for k in AVAILABLE_EXPORT_TYPES]
-
-    def get_export_types(self) -> list:
-        """
-        Function returning the array of the currently available
-        types supported by the tool's exporter
-        :return: list with specific types
-        """
-        return [k for k in AVAILABLE_EXPORT_TYPES]
 
     def get_records_hashes(self):
         """

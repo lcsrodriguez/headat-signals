@@ -1,43 +1,54 @@
 AVAILABLE_EXPORT_TYPES = {
-    "text_txt": {
-        "ext": "txt",
+    "txt": {
+        "extension": "txt",
         "method": "custom",
     },
-    "text_out": {
-        "ext": "out",
+    "out": {
+        "extension": "out",
+        "method": "custom",
     },
-    "text_dat": {
-        "ext": "dat",
+    "dat": {
+        "extension": "dat",
+        "method": "custom",
     },
     "excel": {
-        "ext": "xlsx",
+        "extension": "xlsx",
         "method": "to_excel",
     },
     "csv": {
-        "ext": "csv"
+        "extension": "csv",
+        "method": "to_csv",
     },
     "json": {
-        "ext": "json"
+        "extension": "json",
+        "method": "to_json",
     },
     "xml": {
-        "ext": "xml"
+        "extension": "xml",
+        "method": "to_xml"
     },
     "markdown": {
-        "ext": "md"
+        "extension": "md",
+        "method": "to_markdown"
     },
     "latex": {
-        "ext": "tex"
+        "extension": "tex",
+        "method": "to_latex"
     },
     "parquet": {
-        "ext": "pqt"
+        "extension": "pqt",
+        "method": "to_parquet"
     },
     "pickle": {
-        "ext": "pkl"
+        "extension": "pkl",
+        "method": "to_pickle"
     },
     "sqlite": {
-        "ext": "db"
+        "extension": "db",
+        "method": "to_sql"
     },
     "matlab": {
-        "ext": "mat"
+        "extension": "mat",
+        "method": "custom"
     }
 }
