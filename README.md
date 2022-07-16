@@ -78,7 +78,7 @@ If you choose the cloning method, please perform a prelinimary step: installing 
 | MATLAB    | `.mat`         | For heavy computations on MATLAB programs (proprietary software)                                |  ✅ |
 | WAV       | `.wav`         | -                                                                                               |  ✅ |
 | EDF       | `.edf`         | -                                                                                               |  ✅ |
-| Feather   | `.fea, .feather` Apache Arrow's Feather file format for fast binary columnar in-memory storage                   |  ✅ |
+| Feather   | `.fea, .feather`| Apache Arrow's Feather file format for fast binary columnar in-memory storage                   |  ✅ |
 
 
 
