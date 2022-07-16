@@ -4,3 +4,6 @@ tabulate
 fastparquet
 SQLAlchemy
 pyspark
+pandas
+numpy
+scipy

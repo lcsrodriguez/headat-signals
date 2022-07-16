@@ -211,6 +211,9 @@ class HDView:
         :rtype: pyspark.RDD
         :return: PySpark RDD object
         """
+
+        # TODO : Faire une fonction qui initie un Spark Context s'il n'en existe pas sinon utiliser l'actuel créé
+
         spark = SparkSession.builder.master("local[1]")\
             .appName('HEADAT RDD Converter')\
             .getOrCreate()
@@ -405,6 +408,19 @@ class HDView:
             return True
         except:
             return False
+
+    def t_wav(self, **kwargs) -> bool:
+        """
+        Function converting the record to a .wav file
+        :rtype: bool
+        :return: Boolean set to True if conversion has been successfully performed
+        """
+        # Gathering the details concerning the specified format
+        df, _, filename = self.get_conversion_details("wav")
+
+        # TODO: Do the implementation
+
+        pass
 
     # ----------------------------------------------------------------
     #                           GENERIC METHODS

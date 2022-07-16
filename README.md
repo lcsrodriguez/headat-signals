@@ -59,7 +59,7 @@ If you choose the cloning method, please perform a prelinimary step: installing 
 | Pandas    | `Series`    | Pandas Series conversion (for multiple signals, return a list of Series) | ❌    |
 | Pandas    | `DataFrame` | Pandas DataFrame conversion (best solution for further data processing)  | ✅    |
 | HDFS      | -           | Hadoop Distributed File System (HDFS) *(using PyArrow)*                  |      |
-| RDD       | -           | Resilient Distributed Datasets (RDD) *(using PySpark)*                   |      |
+| RDD       | -           | Resilient Distributed Datasets (RDD) *(using PySpark)*                   | ✅    |
 
 ## List of export formats
 
