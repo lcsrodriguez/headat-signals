@@ -9,4 +9,7 @@ print(a.get_infos())
 c = a.t_frame()
 #print(c.head(20))
 
-#c.to_parquet("out/test.parquet", engine="pyarrow")
+#c.to_pickle("out/test.pickle")
+
+
+print(pd.read_pickle("out/test.pickle"))
