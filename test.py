@@ -1,3 +1,5 @@
+import pandas as pd
+
 from headat.main import *
 
 
@@ -19,7 +21,9 @@ a.t_md()
 a.t_tex()
 a.t_parquet()
 a.t_pickle()
-"""
 a.t_wav()
-a.t_edf()
+#a.t_edf()
 a.t_csv()
+a.t_feather()
+"""
+pd.DataFrame().to_records()

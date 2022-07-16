@@ -42,6 +42,8 @@ class HDView:
         """
 
         # Declaring main variables
+        self.nb_observations = None
+        self.columns = None
         self.spark_context = None
         self.record = None
         self.signals = None
@@ -127,7 +129,6 @@ class HDView:
             self.infos = read_rec[1]
             self.columns = [k.lower().replace(" ", "_") for k in self.infos["sig_name"]]
             self.nb_observations = self.infos["sig_len"]
-            print(self.columns)
             return True
         except Exception as e:
             raise Exception(f"Failure on the reading of the record: \nError details : {e}")
@@ -175,6 +176,18 @@ class HDView:
         """
         return self.infos
 
+    def get_spark_context(self) -> pyspark.sql.SparkSession:
+        """
+        Function initializing a SparkContext
+        :rtype: pyspark.sql.SparkSession
+        :return: SparkContext
+        """
+        if self.spark_context is None:
+             self.spark_context = SparkSession.builder.master("local[1]")\
+                 .appName('HEADAT RDD Converter')\
+                .getOrCreate()
+        return self.spark_context
+
     # ----------------------------------------------------------------
     #                     IN-PROGRAM CONVERSION METHODS
 
@@ -199,6 +212,14 @@ class HDView:
         """
         return self.get_signals()
 
+    def t_numpy_records(self) -> np.record:
+        """
+        Function returning a converted Numpy records of signals series
+        :rtype np.record:
+        :return: Numpy records
+        """
+        return self.t_frame().to_records()
+
     def t_frame(self) -> pd.DataFrame:
         """
         Function returning a converted array as a Pandas DataFrame
@@ -212,16 +233,9 @@ class HDView:
         :rtype: pyspark.RDD
         :return: PySpark RDD object
         """
-
-        # TODO : Faire une fonction qui initie un Spark Context s'il n'en existe pas sinon utiliser l'actuel créé
-
-        spark = SparkSession.builder.master("local[1]")\
-            .appName('HEADAT RDD Converter')\
-            .getOrCreate()
-        self.spark_context = spark
+        spark = self.get_spark_context()
         df_ps = spark.createDataFrame(self.t_frame())
-        df_rdd = df_ps.rdd
-        return df_rdd
+        return df_ps.rdd
 
     # ----------------------------------------------------------------
     #                    EXPORT METHODS (GENERIC METHODS)
@@ -469,7 +483,6 @@ class HDView:
         BLOCKSIZE = 65536
         hasher = hashlib.md5()
         # TODO : Complete function (check Twitter post)
-
 
 """
     1 record <-> 1 or more signals
