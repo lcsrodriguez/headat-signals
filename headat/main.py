@@ -40,6 +40,7 @@ class HDView:
         self.record = None
         self.signals = None
         self.infos = None
+        self.start_time = get_current_datetime()
 
         # Parsing the arguments of the c-tor
         if not isinstance(record, str) or not isinstance(title, str):
@@ -116,6 +117,7 @@ class HDView:
             self.signals = read_rec[0]
             self.infos = read_rec[1]
             self.columns = [k.lower().replace(" ", "_") for k in self.infos["sig_name"]]
+            self.nb_observations = self.infos["sig_len"]
             print(self.columns)
             return True
         except Exception as e:
@@ -165,7 +167,31 @@ class HDView:
         return self.infos
 
     # ----------------------------------------------------------------
-    #                           EXPORT METHODS
+    #                     IN-PROGRAM CONVERSION METHODS
+
+    def t_array(self) -> list:
+        """
+        Function returning a converted "pure" Python array of signals series
+        :return: Python array
+        """
+        return self.get_raw_signals()
+
+    def t_numpy(self) -> np.ndarray:
+        """
+        Function returning a converted Numpy ndarray of signals series
+        :return: Numpy ndarrays
+        """
+        return self.get_signals()
+
+    def t_frame(self) -> pd.DataFrame:
+        """
+        Function returning a converted array as a Pandas DataFrame
+        :return: Pandas DataFrame of the underlying signals
+        """
+        return pd.DataFrame(self.get_signals(), columns=self.columns)
+
+    # ----------------------------------------------------------------
+    #                    EXPORT METHODS (GENERIC METHODS)
 
     def check_registered_record(self) -> bool:
         """
@@ -174,12 +200,11 @@ class HDView:
         """
         return (self.record is not None) and (self.signals is not None) and (self.infos is not None)
 
-    def convert(self, format: str = "csv") -> bool:
+    def get_conversion_details(self, format: str = "csv") -> tuple:
         """
         Intermediary function converting the signals data into the desired/specified data type
         :param format: Format type (conversion output)
-        :return: Boolean indicating if the conversion and the
-                 storage steps have been well-performed
+        :return: Tuple containing the original DataFrame, the extension and the method
         """
 
         # Checking if a record is registered
@@ -191,55 +216,78 @@ class HDView:
             raise TypeError("The format parameter needs to be represented as a non-empty string.")
 
         format = format.lower()
-        # Filtering values
-        print(format)
         if format not in get_export_extensions():
             raise ValueError("The format is not yet supported by the system. Please consider initiating a GitHub issue.")
 
-        print(f"Asked format : {format}")
-
+        print(f"Conversion to format : {format}")
         df = self.t_frame()
-        # Converting the view in the specified extension
+        filename = self.folder_name + f"out_{self.start_time}.{formats[format]['extension']}"
+        return df, formats[format]["method"], filename
+
+    # ----------------------------------------------------------------
+    #                    EXPORT METHODS (FORMAT METHODS)
+
+    def t_xlsx(self, **kwargs) -> bool:
+        """
+        Function converting the record to the XSLX format
+        :rtype: bool
+        :return: Boolean set to True if conversion has been successfully performed
+        """
+        if self.nb_observations > EXCEL_ROW_LIMIT:
+            raise Exception("The record is too long for an .xlsx conversion.")
+        # Gathering the details concerning the specified format
+        df, method, filename = self.get_conversion_details("xlsx")
+        cl_m = eval(f"df.{method}")
         try:
-            if formats[format]["method"] == "custom":
-                print(f"Not yet supported for {format}")
-                return False
-            if format in ["json", "pickle"]:
-                # Error with the JSON format: 'index=False' is only valid when 'orient' is 'split' or 'table'
-                eval(f"df.{formats[format]['method']}(self.folder_name + f'out_{get_current_datetime()}.{formats[format]['extension']}')")
-            elif format == "latex":
-                eval(f"df.{formats[format]['method']}(self.folder_name + f'out_{get_current_datetime()}.{formats[format]['extension']}')")
-            else:
-                eval(f"df.{formats[format]['method']}(self.folder_name + f'out_{get_current_datetime()}.{formats[format]['extension']}', index=False)")
-            print(f"Export finished for {format} format")
+            cl_m(filename, **kwargs)
             return True
-        except Exception as e:
-            print(e)
+        except:
             return False
 
-
-
-    def t_frame(self) -> pd.DataFrame:
+    def t_csv(self, **kwargs) -> bool:
         """
-        Function returning a converted array as a Pandas DataFrame
-        :return: Pandas DataFrame of the underlying signals
+        Function converting the record to the CSV format
+        :rtype: bool
+        :return: Boolean set to True if conversion has been successfully performed
         """
-        return pd.DataFrame(self.get_signals(), columns=self.columns)
+        # Gathering the details concerning the specified format
+        df, method, filename = self.get_conversion_details("csv")
+        cl_m = eval(f"df.{method}")
+        try:
+            cl_m(filename, index_label='id', **kwargs)
+            return True
+        except:
+            return False
 
-    def t_numpy(self) -> np.ndarray:
+    def t_json(self, **kwargs) -> bool:
         """
-        Function returning a converted Numpy ndarray of signals series
-        :return: Numpy ndarrays
+        Function converting the record to the JSON format
+        :rtype: bool
+        :return: Boolean set to True if conversion has been successfully performed
         """
-        return self.signals
+        # Gathering the details concerning the specified format
+        df, method, filename = self.get_conversion_details("json")
+        cl_m = eval(f"df.{method}")
+        try:
+            cl_m(filename, **kwargs)
+            return True
+        except:
+            return False
 
-    def t_csv(self) -> bool:
-        """ Function converting the record to the CSV format """
-        return self.convert("xlsx")
-
-    def t_xlsx(self) -> bool:
-        """ Function converting the record to the XLSX format """
-        return self.convert("xlsx")
+    def t_xml(self, **kwargs) -> bool:
+        """
+        Function converting the record to the XML format
+        :rtype: bool
+        :return: Boolean set to True if conversion has been successfully performed
+        """
+        # Gathering the details concerning the specified format
+        df, method, filename = self.get_conversion_details("xml")
+        cl_m = eval(f"df.{method}")
+        try:
+            cl_m(filename, **kwargs)
+            return True
+        except:
+            return False
 
     # ----------------------------------------------------------------
     #                           GENERIC METHODS
@@ -277,11 +325,3 @@ class HDView:
     1 or more records <-> 1 HDGroup ==> Goal: statistical comparison
         - do the same as with 1 HDView but concat the multiple records side-by-side 
 """
-
-
-class HDGroup:
-    """
-    HDGroup class
-    """
-    pass
-
