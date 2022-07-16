@@ -23,9 +23,8 @@ import pyspark
 from pyspark.sql import SparkSession
 from .lib.functions import *
 
-if os.path.exists(EXPORT_FOLDERS) and os.path.isdir(EXPORT_FOLDERS):
-    pass
-else:
+
+if not os.path.exists(EXPORT_FOLDERS) or not os.path.isdir(EXPORT_FOLDERS):
     os.mkdir(EXPORT_FOLDERS)
 
 

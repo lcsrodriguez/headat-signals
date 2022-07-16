@@ -56,6 +56,7 @@ If you choose the cloning method, please perform a prelinimary step: installing 
 | Raw set   | `set`       | "Pure" Python set (set of lists)                                         | ❌    |
 | Raw dict  | `dict`      | "Pure" Python dict (dict of lists)                                       | ✅    |
 | Numpy     | `ndarray`   | Numpy n-dimensions array (for fast computations) (underlying C-layers)   | ✅    |
+| Numpy     | `record`    | Numpy record array                                                       | ✅    |
 | Pandas    | `Series`    | Pandas Series conversion (for multiple signals, return a list of Series) | ❌    |
 | Pandas    | `DataFrame` | Pandas DataFrame conversion (best solution for further data processing)  | ✅    |
 | HDFS      | -           | Hadoop Distributed File System (HDFS) *(using PyArrow)*                  | ❌    |
