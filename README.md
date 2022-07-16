@@ -63,27 +63,30 @@ If you choose the cloning method, please perform a prelinimary step: installing 
 
 ## List of export formats
 
-| Name      | Extension      | Description                                                                                     | Ok  |
-|-----------|----------------|-------------------------------------------------------------------------------------------------|:---:|
-| Text file | `.txt, .out`   | Standard text file                                                                              |     |
-| Excel     | `.xslx`        | MS Excel/OpenOffice Calc file                                                                   |     |
-| CSV       | `.csv`         | Better for data-science                                                                         |  ✅  |
-| JSON      | `.json`        | JSON file                                                                                       |  ✅  |
-| XML       | `.xml`         | Useful for XML parsing                                                                          |  ✅  |
-| Markdown  | `.md`          | Useful for quick report in Markdown                                                             |  ✅  |
-| LaTeX     | `.tex`         | Recommended for highly-detailed article in LaTeX                                                |  ✅  |
-| Parquet   | `.pqt`         | [Apache Parquet](https://parquet.apache.org/) format : highly recommended for HPC               |  ✅  |
-| Pickle    | `.pkl`         | For data serialization and unserialization (could be useful for such applications)              |     |
-| SQLite    | `.db, .sqlite` | Classic and light-weight file-based SQL RDBMS (can be relevant for requesting organized records |  ❌  |
-| MATLAB    | `.mat`         | For heavy computations on MATLAB programs (proprietary software)                                |  ❌  |
-| WAV       | `.wav`         | -                                                                                               |  ❌  |
+| Name      | Extension      | Description                                                                                     | Ok |
+|-----------|----------------|-------------------------------------------------------------------------------------------------|:--:|
+| Text file | `.txt, .out`   | Standard text file                                                                              |    |
+| Excel     | `.xslx`        | MS Excel/OpenOffice Calc file                                                                   | ❌[^1] |
+| CSV       | `.csv`         | Better for data-science                                                                         |  ✅ |
+| JSON      | `.json`        | JSON file                                                                                       |  ✅ |
+| XML       | `.xml`         | Useful for XML parsing                                                                          |  ✅ |
+| Markdown  | `.md`          | Useful for quick report in Markdown                                                             |  ✅ |
+| LaTeX     | `.tex`         | Recommended for highly-detailed article in LaTeX                                                |  ✅ |
+| Parquet   | `.pqt`         | [Apache Parquet](https://parquet.apache.org/) format : highly recommended for HPC               |  ✅ |
+| Pickle    | `.pkl`         | For data serialization and unserialization (could be useful for such applications)              |  ✅ |
+| SQLite    | `.db, .sqlite` | Classic and light-weight file-based SQL RDBMS (can be relevant for requesting organized records |  ❌ |
+| MATLAB    | `.mat`         | For heavy computations on MATLAB programs (proprietary software)                                |  ❌ |
+| WAV       | `.wav`         | -                                                                                               |  ❌ |
 
 
-
+*For fast processing steps, please consider the **Pickle** and **Parquet** formats, especially designed for HPC.*
 
 **Remarks**
 - If you want to suggest a new supported format, please create a **new issue** with the *NEW EXPORT FORMAT* label.
 - If you want to add your own version of a new exporter for WFDB data, please init a **new Pull Request**
+
+[^1]: MS Excel (`.xls`/`.xlsx`) files have a maximum limit of lines to be written on a single spreadsheet (1048576). If the studied signals are too long, unexpected behavior can occur ! Please better consider `.csv` export with additional processing steps instead of incomplete `.xlsx` formatting.
+
 
 ## Resources 
 

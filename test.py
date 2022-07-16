@@ -9,7 +9,7 @@ print(a.get_infos())
 c = a.t_frame()
 #print(c.head(20))
 
-#c.to_pickle("out/test.pickle")
+c.to_csv("out/test.csv")
 
 
-print(pd.read_pickle("out/test.pickle"))
+print(pd.read_csv("out/test.csv"))
