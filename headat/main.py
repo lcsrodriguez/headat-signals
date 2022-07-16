@@ -176,6 +176,13 @@ class HDView:
         """
         return self.get_raw_signals()
 
+    def t_dict(self) -> dict:
+        """
+        Function returning a converted "pure" Python dict of signals series
+        :return: Python dict
+        """
+        return self.t_frame().to_dict()
+
     def t_numpy(self) -> np.ndarray:
         """
         Function returning a converted Numpy ndarray of signals series
@@ -358,6 +365,24 @@ class HDView:
         # TODO
         pass
 
+    def t_matlab(self, **kwargs) -> bool:
+        """
+        Function converting the record to a MATLAB file
+        :rtype: bool
+        :return: Boolean set to True if conversion has been successfully performed
+        """
+        # Gathering the details concerning the specified format
+        df, _, filename = self.get_conversion_details("matlab")
+
+        df.rename(columns=lambda x: x.replace(' ', '_'), inplace=True)
+        try:
+            scipy.io.savemat(file_name=filename,
+                             mdict={
+                                 'HEADAT': df.to_dict("list")
+                             })
+            return True
+        except:
+            return False
 
     # ----------------------------------------------------------------
     #                           GENERIC METHODS

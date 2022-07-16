@@ -6,6 +6,7 @@ import warnings
 # Export routine to LaTeX generate a FutureWarning which has to be silenced
 warnings.simplefilter(action='ignore', category=FutureWarning)
 
+
 def get_current_datetime() -> str:
     """
     Function returning the current datetime in a string representation
