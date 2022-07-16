@@ -442,6 +442,21 @@ class HDView:
         except:
             return False
 
+    def t_feather(self, **kwargs) -> bool:
+        """
+        Function converting the record to a .fea/.feather file
+        :rtype: bool
+        :return: Boolean set to True if conversion has been successfully performed
+        """
+        # Gathering the details concerning the specified format
+        df, method, filename = self.get_conversion_details("feather")
+        cl_m = eval(f"df.{method}")
+        try:
+            cl_m(filename, **kwargs)
+            return True
+        except:
+            return False
+
     # ----------------------------------------------------------------
     #                           GENERIC METHODS
 

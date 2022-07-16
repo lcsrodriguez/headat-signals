@@ -58,14 +58,14 @@ If you choose the cloning method, please perform a prelinimary step: installing 
 | Numpy     | `ndarray`   | Numpy n-dimensions array (for fast computations) (underlying C-layers)   | ✅    |
 | Pandas    | `Series`    | Pandas Series conversion (for multiple signals, return a list of Series) | ❌    |
 | Pandas    | `DataFrame` | Pandas DataFrame conversion (best solution for further data processing)  | ✅    |
-| HDFS      | -           | Hadoop Distributed File System (HDFS) *(using PyArrow)*                  |      |
+| HDFS      | -           | Hadoop Distributed File System (HDFS) *(using PyArrow)*                  | ❌    |
 | RDD       | -           | Resilient Distributed Datasets (RDD) *(using PySpark)*                   | ✅    |
 
 ## List of export formats
 
 | Name      | Extension      | Description                                                                                     | Ok |
 |-----------|----------------|-------------------------------------------------------------------------------------------------|:--:|
-| Text file | `.txt, .out`   | Standard text file                                                                              |    |
+| Text file | `.txt, .out`   | Standard text file                                                                              |  ❌ |
 | Excel     | `.xslx`        | MS Excel/OpenOffice Calc file                                                                   | ❌[^1] |
 | CSV       | `.csv`         | Better for data-science                                                                         |  ✅ |
 | JSON      | `.json`        | JSON file                                                                                       |  ✅ |
@@ -78,8 +78,11 @@ If you choose the cloning method, please perform a prelinimary step: installing 
 | MATLAB    | `.mat`         | For heavy computations on MATLAB programs (proprietary software)                                |  ✅ |
 | WAV       | `.wav`         | -                                                                                               |  ✅ |
 | EDF       | `.edf`         | -                                                                                               |  ✅ |
+| Feather   | `.fea, .feather` Apache Arrow's Feather file format for fast binary columnar in-memory storage                   |  ✅ |
 
-*For fast processing steps, please consider the **Pickle** and **Parquet** formats, especially designed for HPC.*
+
+
+*For fast processing steps, please consider the **Pickle**, **Parquet** and **Feather** formats, especially designed for HPC.*
 
 **Remarks**
 - If you want to suggest a new supported format, please create a **new issue** with the *NEW EXPORT FORMAT* label.

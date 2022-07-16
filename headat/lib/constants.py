@@ -58,6 +58,10 @@ formats = {
     "edf":{
         "extension": "edf",
         "method": "custom"
+    },
+    "feather":{
+        "extension": "fea",
+        "method": "to_feather"
     }
 }
 EXPORT_FOLDERS = "out"
