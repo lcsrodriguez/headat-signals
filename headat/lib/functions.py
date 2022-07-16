@@ -34,7 +34,7 @@ def get_export_types() -> list:
     types supported by the tool's exporter
     :return: list with specific types
     """
-    return [k for k in formats]
+    return list(formats.keys())
 
 
 def get_export_extensions() -> list:

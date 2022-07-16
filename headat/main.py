@@ -216,7 +216,7 @@ class HDView:
             raise TypeError("The format parameter needs to be represented as a non-empty string.")
 
         format = format.lower()
-        if format not in get_export_extensions():
+        if format not in get_export_types():
             raise ValueError("The format is not yet supported by the system. Please consider initiating a GitHub issue.")
 
         print(f"Conversion to format : {format}")
@@ -282,6 +282,36 @@ class HDView:
         """
         # Gathering the details concerning the specified format
         df, method, filename = self.get_conversion_details("xml")
+        cl_m = eval(f"df.{method}")
+        try:
+            cl_m(filename, **kwargs)
+            return True
+        except:
+            return False
+
+    def t_md(self, **kwargs) -> bool:
+        """
+        Function converting the record to the MD (Markdown) format
+        :rtype: bool
+        :return: Boolean set to True if conversion has been successfully performed
+        """
+        # Gathering the details concerning the specified format
+        df, method, filename = self.get_conversion_details("markdown")
+        cl_m = eval(f"df.{method}")
+        try:
+            cl_m(filename, **kwargs)
+            return True
+        except:
+            return False
+
+    def t_tex(self, **kwargs) -> bool:
+        """
+        Function converting the record to the .tex (TeX) format
+        :rtype: bool
+        :return: Boolean set to True if conversion has been successfully performed
+        """
+        # Gathering the details concerning the specified format
+        df, method, filename = self.get_conversion_details("latex")
         cl_m = eval(f"df.{method}")
         try:
             cl_m(filename, **kwargs)

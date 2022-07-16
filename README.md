@@ -52,12 +52,12 @@ If you choose the cloning method, please perform a prelinimary step: installing 
 
 | Class     | Type        | Description                                                              | Ok   |
 |-----------|-------------|--------------------------------------------------------------------------|:-----|
-| Raw array | `list`      | "Pure" Python array (list of lists)                                      |      |
+| Raw array | `list`      | "Pure" Python array (list of lists)                                      | ✅    |
 | Raw set   | `set`       | "Pure" Python set (set of lists)                                         |      |
 | Raw dict  | `dict`      | "Pure" Python dict (dict of lists)                                       |      |
-| Numpy     | `ndarray`   | Numpy n-dimensions array (for fast computations) (underlying C-layers)   |      |
+| Numpy     | `ndarray`   | Numpy n-dimensions array (for fast computations) (underlying C-layers)   | ✅    |
 | Pandas    | `Series`    | Pandas Series conversion (for multiple signals, return a list of Series) |      |
-| Pandas    | `DataFrame` | Pandas DataFrame conversion (best solution for further data processing)  |      |
+| Pandas    | `DataFrame` | Pandas DataFrame conversion (best solution for further data processing)  | ✅    |
 | HDFS      | -           | Hadoop Distributed File System (HDFS) *(using PyArrow)*                  |      |
 | RDD       | -           | Resilient Distributed Datasets (RDD) *(using PySpark)*                   |      |
 
