@@ -24,4 +24,3 @@ a.t_wav()
 a.t_csv()
 a.t_feather()
 """
-pd.DataFrame().to_records()

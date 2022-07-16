@@ -54,18 +54,23 @@ formats = {
         "extension": "mat",
         "method": "custom"
     },
-    "wav":{
+    "wav": {
         "extension": "wav",
         "method": "custom"
     },
-    "edf":{
+    "edf": {
         "extension": "edf",
         "method": "custom"
     },
-    "feather":{
+    "feather": {
         "extension": "fea",
-        "method": "to_feather"
+        "method": "to_feather",
+    },
+    "stata": {
+        "extension": "dta",
+        "method": "to_stata",
     }
 }
+
 EXPORT_FOLDERS = "out"
 EXCEL_ROW_LIMIT = 1048576 - 2
