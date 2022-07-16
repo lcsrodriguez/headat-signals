@@ -21,4 +21,6 @@ a.t_tex()
 a.t_parquet()
 a.t_pickle()
 """
-a.t_matlab()
+d = a.t_rdd()
+print(type(d))
+print(d)

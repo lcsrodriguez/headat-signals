@@ -15,7 +15,11 @@
 """
 import numpy as np
 import pandas as pd
+import pyspark
 import wfdb as wf
+import scipy.io
+import pyspark
+from pyspark.sql import SparkSession
 from .lib.functions import *
 
 if os.path.exists(EXPORT_FOLDERS) and os.path.isdir(EXPORT_FOLDERS):
@@ -37,6 +41,7 @@ class HDView:
         """
 
         # Declaring main variables
+        self.spark_context = None
         self.record = None
         self.signals = None
         self.infos = None
@@ -79,6 +84,9 @@ class HDView:
         to kill a selected instance of HDView
         :return: bool
         """
+        if self.spark_context is not None:
+            print("Shutting down current SparkContext")
+            self.spark_context.stop()
         print("Instance killed")
         return True
 
@@ -196,6 +204,20 @@ class HDView:
         :return: Pandas DataFrame of the underlying signals
         """
         return pd.DataFrame(self.get_signals(), columns=self.columns)
+
+    def t_rdd(self) -> pyspark.RDD:
+        """
+        Function returning a PySpark RDD
+        :rtype: pyspark.RDD
+        :return: PySpark RDD object
+        """
+        spark = SparkSession.builder.master("local[1]")\
+            .appName('HEADAT RDD Converter')\
+            .getOrCreate()
+        self.spark_context = spark
+        df_ps = spark.createDataFrame(self.t_frame())
+        df_rdd = df_ps.rdd
+        return df_rdd
 
     # ----------------------------------------------------------------
     #                    EXPORT METHODS (GENERIC METHODS)

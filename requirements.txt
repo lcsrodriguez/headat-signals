@@ -3,3 +3,4 @@ pyarrow
 tabulate
 fastparquet
 SQLAlchemy
+pyspark
