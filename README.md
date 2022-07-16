@@ -48,7 +48,7 @@ If you choose the cloning method, please perform a prelinimary step: installing 
 **Remark**: If you want to clearly uninstall the module, please use: `pip uninstall headat`.
 
 
-## List of in-program types
+## List of in-memory conversion types
 
 | Class     | Type        | Description                                                              | Ok   |
 |-----------|-------------|--------------------------------------------------------------------------|:-----|
@@ -80,6 +80,7 @@ If you choose the cloning method, please perform a prelinimary step: installing 
 | WAV       | `.wav`         | -                                                                                               |  ✅ |
 | EDF       | `.edf`         | -                                                                                               |  ✅ |
 | Feather   | `.fea, .feather`| Apache Arrow's Feather file format for fast binary columnar in-memory storage                   |  ✅ |
+| STATA   | `.dta`| STATA Statistical Analysis software (proprietary software)                   |  ✅ |
 
 
 
