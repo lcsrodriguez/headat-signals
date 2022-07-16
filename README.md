@@ -72,7 +72,7 @@ If you choose the cloning method, please perform a prelinimary step: installing 
 | XML       | `.xml`         | Useful for XML parsing                                                                          |  ✅  |
 | Markdown  | `.md`          | Useful for quick report in Markdown                                                             |  ✅  |
 | LaTeX     | `.tex`         | Recommended for highly-detailed article in LaTeX                                                |  ✅  |
-| Parquet   | `.pqt`         | [Apache Parquet](https://parquet.apache.org/) format : highly recommended for HPC               |     |
+| Parquet   | `.pqt`         | [Apache Parquet](https://parquet.apache.org/) format : highly recommended for HPC               |  ✅  |
 | Pickle    | `.pkl`         | For data serialization and unserialization (could be useful for such applications)              |     |
 | SQLite    | `.db, .sqlite` | Classic and light-weight file-based SQL RDBMS (can be relevant for requesting organized records |  ❌  |
 | MATLAB    | `.mat`         | For heavy computations on MATLAB programs (proprietary software)                                |  ❌  |

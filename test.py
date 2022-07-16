@@ -7,6 +7,6 @@ a = HDView(file_folder + "a01r")
 b = a.get_signals()
 print(a.get_infos())
 c = a.t_frame()
-print(c.head(20))
+#print(c.head(20))
 
-print(c.to_latex("out/test.tex"))
+#c.to_parquet("out/test.parquet", engine="pyarrow")
