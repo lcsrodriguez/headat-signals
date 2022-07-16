@@ -1,7 +1,6 @@
 from headat.main import *
 
 
-
 file_folder = "data/apnea-ecg-database-1.0.0/"
 file = "samples/aami3a"
 #a = HDView(file_folder + "a01r")
@@ -21,6 +20,6 @@ a.t_tex()
 a.t_parquet()
 a.t_pickle()
 """
-d = a.t_rdd()
-print(type(d))
-print(d)
+a.t_wav()
+a.t_edf()
+a.t_csv()

@@ -76,8 +76,8 @@ If you choose the cloning method, please perform a prelinimary step: installing 
 | Pickle    | `.pkl`         | For data serialization and unserialization (could be useful for such applications)              |  ✅ |
 | SQLite    | `.db, .sqlite` | Classic and light-weight file-based SQL RDBMS (can be relevant for requesting organized records |  ❌ |
 | MATLAB    | `.mat`         | For heavy computations on MATLAB programs (proprietary software)                                |  ✅ |
-| WAV       | `.wav`         | -                                                                                               |  ❌ |
-
+| WAV       | `.wav`         | -                                                                                               |  ✅ |
+| EDF       | `.edf`         | -                                                                                               |  ✅ |
 
 *For fast processing steps, please consider the **Pickle** and **Parquet** formats, especially designed for HPC.*
 

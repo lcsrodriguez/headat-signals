@@ -50,6 +50,14 @@ formats = {
     "matlab": {
         "extension": "mat",
         "method": "custom"
+    },
+    "wav":{
+        "extension": "wav",
+        "method": "custom"
+    },
+    "edf":{
+        "extension": "edf",
+        "method": "custom"
     }
 }
 EXPORT_FOLDERS = "out"

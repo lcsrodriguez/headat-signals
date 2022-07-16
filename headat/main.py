@@ -17,6 +17,7 @@ import numpy as np
 import pandas as pd
 import pyspark
 import wfdb as wf
+from wfdb.io.convert import wfdb_to_wav, wfdb_to_edf
 import scipy.io
 import pyspark
 from pyspark.sql import SparkSession
@@ -418,9 +419,28 @@ class HDView:
         # Gathering the details concerning the specified format
         df, _, filename = self.get_conversion_details("wav")
 
-        # TODO: Do the implementation
+        try:
+            wfdb_to_wav(record_name=self.record,
+                        output_filename=filename)
+            return True
+        except:
+            return False
 
-        pass
+    def t_edf(self, **kwargs) -> bool:
+        """
+        Function converting the record to a .edf file
+        :rtype: bool
+        :return: Boolean set to True if conversion has been successfully performed
+        """
+        # Gathering the details concerning the specified format
+        df, _, filename = self.get_conversion_details("edf")
+
+        try:
+            wfdb_to_edf(record_name=self.record,
+                        output_filename=filename)
+            return True
+        except:
+            return False
 
     # ----------------------------------------------------------------
     #                           GENERIC METHODS
