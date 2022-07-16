@@ -69,7 +69,16 @@ formats = {
     "stata": {
         "extension": "dta",
         "method": "to_stata",
+    },
+    "html": {
+        "extension": "html",
+        "method": "to_html",
+    },
+    "hdf5": {
+        "extension": "h5",
+        "method": "to_hdf",
     }
+
 }
 
 EXPORT_FOLDERS = "out"

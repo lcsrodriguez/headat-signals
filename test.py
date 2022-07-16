@@ -24,3 +24,5 @@ a.t_wav()
 a.t_csv()
 a.t_feather()
 """
+a.t_html()
+print(a.t_hdf5())

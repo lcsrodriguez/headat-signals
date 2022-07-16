@@ -72,15 +72,17 @@ If you choose the cloning method, please perform a prelinimary step: installing 
 | JSON      | `.json`        | JSON file                                                                                       |  ✅ |
 | XML       | `.xml`         | Useful for XML parsing                                                                          |  ✅ |
 | Markdown  | `.md`          | Useful for quick report in Markdown                                                             |  ✅ |
+| HTML      | `.html`        | Useful for web development                                                                      |  ✅ |
 | LaTeX     | `.tex`         | Recommended for highly-detailed article in LaTeX                                                |  ✅ |
 | Parquet   | `.pqt`         | [Apache Parquet](https://parquet.apache.org/) format : highly recommended for HPC               |  ✅ |
 | Pickle    | `.pkl`         | For data serialization and unserialization (could be useful for such applications)              |  ✅ |
+| HDF5       | `.h5`         | Hierarchical Data Format (HDF)                                                                  |  ✅ |
 | SQLite    | `.db, .sqlite` | Classic and light-weight file-based SQL RDBMS (can be relevant for requesting organized records |  ❌ |
 | MATLAB    | `.mat`         | For heavy computations on MATLAB programs (proprietary software)                                |  ✅ |
 | WAV       | `.wav`         | -                                                                                               |  ✅ |
 | EDF       | `.edf`         | -                                                                                               |  ✅ |
-| Feather   | `.fea, .feather`| Apache Arrow's Feather file format for fast binary columnar in-memory storage                   |  ✅ |
-| STATA   | `.dta`| STATA Statistical Analysis software (proprietary software)                   |  ✅ |
+| Feather   | `.fea, .feather`| Apache Arrow's Feather file format for fast binary columnar in-memory storage                  |  ✅ |
+| STATA   | `.dta`| STATA Statistical Analysis software (proprietary software)                                                 |  ✅ |
 
 
 

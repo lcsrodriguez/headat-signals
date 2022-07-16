@@ -350,6 +350,21 @@ class HDView:
         except:
             return False
 
+    def t_html(self, **kwargs) -> bool:
+        """
+        Function converting the record to the HTML format
+        :rtype: bool
+        :return: Boolean set to True if conversion has been successfully performed
+        """
+        # Gathering the details concerning the specified format
+        df, method, filename = self.get_conversion_details("html")
+        cl_m = eval(f"df.{method}")
+        try:
+            cl_m(filename, **kwargs)
+            return True
+        except:
+            return False
+
     def t_tex(self, **kwargs) -> bool:
         """
         Function converting the record to the .tex (TeX) format
@@ -484,6 +499,27 @@ class HDView:
             return True
         except:
             return False
+
+    def t_hdf5(self, **kwargs) -> bool:
+        """
+        Function converting the record to a .hdf file (HDF5)
+        :rtype: bool
+        :return: Boolean set to True if conversion has been successfully performed
+        """
+        # Gathering the details concerning the specified format
+        df, method, filename = self.get_conversion_details("hdf5")
+        cl_m = eval(f"df.{method}")
+        try:
+            cl_m(filename,
+                 key="df",
+                 mode="w",
+                 **kwargs
+                 )
+            return True
+        except Exception as e:
+            print(e)
+            return False
+
     # ----------------------------------------------------------------
     #                           GENERIC METHODS
 
