@@ -2,3 +2,4 @@ openpyxl
 pyarrow
 tabulate
 fastparquet
+SQLAlchemy

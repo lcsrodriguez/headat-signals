@@ -319,6 +319,46 @@ class HDView:
         except:
             return False
 
+    def t_parquet(self, **kwargs) -> bool:
+        """
+        Function converting the record to the Apache Parquet format
+        :rtype: bool
+        :return: Boolean set to True if conversion has been successfully performed
+        """
+        # Gathering the details concerning the specified format
+        df, method, filename = self.get_conversion_details("parquet")
+        cl_m = eval(f"df.{method}")
+        try:
+            cl_m(filename, **kwargs)
+            return True
+        except:
+            return False
+
+    def t_pickle(self, **kwargs) -> bool:
+        """
+        Function converting the record to the Pickle (standard serialization) format
+        :rtype: bool
+        :return: Boolean set to True if conversion has been successfully performed
+        """
+        # Gathering the details concerning the specified format
+        df, method, filename = self.get_conversion_details("pickle")
+        cl_m = eval(f"df.{method}")
+        try:
+            cl_m(filename, **kwargs)
+            return True
+        except:
+            return False
+
+    def t_sql(self, **kwargs) -> bool:
+        """
+        Function converting the record to a database format supported by SQLAlchemy
+        :rtype: bool
+        :return: Boolean set to True if conversion has been successfully performed
+        """
+        # TODO
+        pass
+
+
     # ----------------------------------------------------------------
     #                           GENERIC METHODS
 

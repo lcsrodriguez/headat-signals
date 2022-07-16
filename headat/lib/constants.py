@@ -36,14 +36,14 @@ formats = {
         "method": "to_latex"
     },
     "parquet": {
-        "extension": "pqt",
+        "extension": "parquet",
         "method": "to_parquet"
     },
     "pickle": {
-        "extension": "pkl",
+        "extension": "pickle",
         "method": "to_pickle"
     },
-    "sqlite": {
+    "sql": {
         "extension": "db",
         "method": "to_sql"
     },

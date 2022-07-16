@@ -1,6 +1,7 @@
 from .constants import *
 import datetime
 import os
+import scipy.io
 import warnings
 # Export routine to LaTeX generate a FutureWarning which has to be silenced
 warnings.simplefilter(action='ignore', category=FutureWarning)
