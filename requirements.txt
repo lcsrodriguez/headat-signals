@@ -8,3 +8,4 @@ pandas
 numpy
 scipy
 tables
+validators

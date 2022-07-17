@@ -35,7 +35,7 @@ class HDView:
     VIEWS_INITIALIZED_COUNTER = 0
     VIEWS_TITLES = []
 
-    def __init__(self, record: str, title: str = "") -> None:
+    def __init__(self, record: str = "", title: str = "") -> None:
         """
         Constructor function initializing a new HDView object
         """
@@ -53,10 +53,12 @@ class HDView:
         if not isinstance(record, str) or not isinstance(title, str):
             raise TypeError("Record and title must be string values.")
         if record == "":
-            raise ValueError("Record name must be a valid one : not empty")
-
-        # Increment the number of initialized views in order to get a count
-        HDView.VIEWS_INITIALIZED_COUNTER += 1
+            print(f"No record has been submitted.\n Please consider adding one to the view by doing .add_record("
+                  f"record_name)")
+        else:
+            # Registering the record name
+            if not self.add_record(record):
+                raise Exception("The submitted record name is not valid. Please try it again")
 
         # Formatting HDView's title if title is not defined by the user
         if title == "":
@@ -68,10 +70,6 @@ class HDView:
         # Creation of the folder
         view_folder_name = make_view_directory()
         self.folder_name = view_folder_name
-
-        # Registering the record name
-        if not self.add_record(record):
-            raise Exception("The submitted record name is not valid. Please try it again")
 
     def __str__(self) -> str:
         """
@@ -120,7 +118,13 @@ class HDView:
             # Registering the record on global scope
             self.record = record
 
+            # Increment the number of initialized views in order to get a count
+            HDView.VIEWS_INITIALIZED_COUNTER += 1
+
             # Reading the record
+            # TODO Create a function which read the data, from URL or local file depending on the REGEXed recordname
+            # TODO Check if we download the data, in a specified folder
+            # TODO Use of PycURL for statistics on request latencies
             read_rec = wf.rdsamp(record)
 
             # Filtering the signals and additional information from the signals using wfdb library

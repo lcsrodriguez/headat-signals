@@ -108,7 +108,7 @@ Here are some useful online resources in order to get a clear understanding of t
 - *Development date*: June 2022 - today
 
 
-*PhysioNet* is a repository of freely-available medical research data, managed by the MIT Laboratory for Computational Physiology.
+*PhysioNet* is a repository of freely-available medical research data, managed by the MIT Laboratory for Computational Physiology (MIT-LCP).
 
 This wrapper is based on [wfdb](https://github.com/MIT-LCP/wfdb-python) features. Please consider using it for further development.
 
