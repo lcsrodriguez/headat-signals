@@ -123,6 +123,8 @@ class HDView:
             # Increment the number of initialized views in order to get a count
             HDView.VIEWS_INITIALIZED_COUNTER += 1
 
+            # TODO Add a split method in case which the record_name contains any extension (.hea, .dat, ...)
+
             # Reading the record
             # TODO Create a function which read the data, from URL or local file depending on the REGEXed recordname
             # TODO Check if we download the data, in a specified folder
