@@ -127,6 +127,7 @@ class HDView:
 
             # Reading the record
             # TODO Create a function which read the data, from URL or local file depending on the REGEXed recordname
+            # TODO Check if the domain is physionet.org with urlparse (after the check by validators)
             # TODO Check if we download the data, in a specified folder
             # TODO Use of PycURL for statistics on request latencies
             if validators.url(record):
