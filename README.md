@@ -1,5 +1,5 @@
 <p align="center">
-<img src="img/logo.png" width="200"/>
+<img src="img/logo.png" width="150"/>
 </p>
 
 # HEA/DAT signals file processing

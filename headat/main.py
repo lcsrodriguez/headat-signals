@@ -20,6 +20,7 @@ import wfdb as wf
 from wfdb.io.convert import wfdb_to_wav, wfdb_to_edf
 import scipy.io
 import pyspark
+import pycurl
 import validators
 from pyspark.sql import SparkSession
 from .lib.functions import *
@@ -128,6 +129,7 @@ class HDView:
             # TODO Use of PycURL for statistics on request latencies
             if validators.url(record):
                 # TODO Download the files
+                # TODO Create a samples/ folder within the self.folder_name
                 pass
             else:
                 read_rec = wf.rdsamp(record)
