@@ -273,6 +273,23 @@ class HDView:
     # ----------------------------------------------------------------
     #                    EXPORT METHODS (FORMAT METHODS)
 
+    def t_txt(self, extension: str = "", separator: str = ",", **kwargs) -> bool:
+        """
+        Function converting the record to the textfile format (custom extension
+        :param separator: Separator of the different columns items
+        :param extension: Extension parameter
+        :rtype: bool
+        :return: Boolean set to True if conversion has been successfully performed
+        """
+        # Gathering the details concerning the specified format
+        df, _, filename = self.get_conversion_details("text")
+        filename += str(extension)
+        try:
+            df.to_csv(filename, sep=separator, index_label='id')
+            return True
+        except:
+            return False
+
     def t_xlsx(self, **kwargs) -> bool:
         """
         Function converting the record to the XSLX format

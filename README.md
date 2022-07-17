@@ -66,7 +66,7 @@ If you choose the cloning method, please perform a prelinimary step: installing 
 
 | Name      | Extension      | Description                                                                                     | Ok |
 |-----------|----------------|-------------------------------------------------------------------------------------------------|:--:|
-| Text file | `.txt, .out`   | Standard text file                                                                              |  ❌ |
+| Text file | custom         | Standard text file                                                                              |  ✅ |
 | Excel     | `.xslx`        | MS Excel/OpenOffice Calc file                                                                   | ❌[^1] |
 | CSV       | `.csv`         | Better for data-science                                                                         |  ✅ |
 | JSON      | `.json`        | JSON file                                                                                       |  ✅ |

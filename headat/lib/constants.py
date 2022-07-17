@@ -1,16 +1,8 @@
 formats = {
-    "txt": {
-        "extension": "txt",
+    "text": {
+        "extension": "",
         "method": "custom",
-        "callback": "t_txt"
-    },
-    "out": {
-        "extension": "out",
-        "method": "custom",
-    },
-    "dat": {
-        "extension": "dat",
-        "method": "custom",
+        "callback": "t_text"
     },
     "xlsx": {
         "extension": "xlsx",
