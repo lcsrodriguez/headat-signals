@@ -9,3 +9,4 @@ numpy
 scipy
 tables
 validators
+pycurl

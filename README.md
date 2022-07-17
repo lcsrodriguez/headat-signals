@@ -1,3 +1,7 @@
+<p align="center">
+<img src="img/logo.png" width="200"/>
+</p>
+
 # HEA/DAT signals file processing
 
 Official GitHub repository for **HEADAT** library: `.hea`/`.dat` files processing tool & Wrapper of [wfdb](https://wfdb.readthedocs.io/en/latest/) library.

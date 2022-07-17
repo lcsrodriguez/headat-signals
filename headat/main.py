@@ -20,6 +20,7 @@ import wfdb as wf
 from wfdb.io.convert import wfdb_to_wav, wfdb_to_edf
 import scipy.io
 import pyspark
+import validators
 from pyspark.sql import SparkSession
 from .lib.functions import *
 
@@ -125,7 +126,11 @@ class HDView:
             # TODO Create a function which read the data, from URL or local file depending on the REGEXed recordname
             # TODO Check if we download the data, in a specified folder
             # TODO Use of PycURL for statistics on request latencies
-            read_rec = wf.rdsamp(record)
+            if validators.url(record):
+                # TODO Download the files
+                pass
+            else:
+                read_rec = wf.rdsamp(record)
 
             # Filtering the signals and additional information from the signals using wfdb library
             self.signals = read_rec[0]
