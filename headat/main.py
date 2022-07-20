@@ -16,6 +16,7 @@
 import numpy as np
 import pandas as pd
 import pyspark
+from urllib.parse import urlparse
 import wfdb as wf
 from wfdb.io.convert import wfdb_to_wav, wfdb_to_edf
 import scipy.io
@@ -130,10 +131,23 @@ class HDView:
             # TODO Check if the domain is physionet.org with urlparse (after the check by validators)
             # TODO Check if we download the data, in a specified folder
             # TODO Use of PycURL for statistics on request latencies
+            # Checking if the record name is an URL
             if validators.url(record):
+                url = urlparse(record)
+                print(f"URL : {url}")
+                # Restriction to the physionet.org webpages
+                if "https://" in record:
+                    if "physionet.org" in record:
+                        # We download the file
+                        print("ok")
+                    else:
+                        raise ValueError("Headat only covers the 'physionet.org' web resources.")
+                else:
+                    raise ValueError("Headat only covers HTTPS protocol for web resources.")
                 # TODO Download the files
                 # TODO Create a samples/ folder within the self.folder_name
                 pass
+            # If not, it's a local file and we simply read it using wfdb
             else:
                 read_rec = wf.rdsamp(record)
 
