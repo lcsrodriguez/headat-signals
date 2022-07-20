@@ -11,3 +11,4 @@ tables
 validators
 pycurl
 bs4
+wget

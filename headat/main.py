@@ -22,8 +22,10 @@ import wfdb as wf
 from wfdb.io.convert import wfdb_to_wav, wfdb_to_edf
 import scipy.io
 import pyspark
+import requests
 import pycurl
 import validators
+import wget
 from pyspark.sql import SparkSession
 from .lib.functions import *
 
@@ -144,10 +146,19 @@ class HDView:
                             if url.path.split("/")[1] == "files":
                                 # Download the files
 
-                            
-                                pass
+                                # Getting the list of files from url
+                                r = requests.get(url.geturl())
+                                data = r.text
+                                soup = BeautifulSoup(data)
 
+                                # Formatting the relevant files
+                                links = {
+                                    k.get("href"): url + k.get("href") for k in soup.find_all("a")[1:] if k.get("href").split(".")[-1] in ["hea", "dat"]
+                                }
 
+                                for file, link in links.items():
+                                    wget.download(url=link,
+                                                  out=f"{self.folder_name}{file}")
                             else:
                                 raise ValueError("You have to specify a files/ subfolder")
                         else:
