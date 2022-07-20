@@ -10,3 +10,4 @@ scipy
 tables
 validators
 pycurl
+bs4
