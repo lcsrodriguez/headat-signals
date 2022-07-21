@@ -13,7 +13,8 @@ print(get_export_types())
 """
 
 a = HDView()
-a.add_record(file)
+#a.add_record(file)
+a.add_record("https://physionet.org/files/aami-ec13/1.0.0/")
 a.t_html()
 """
 a.t_csv()

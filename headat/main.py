@@ -23,7 +23,6 @@ from wfdb.io.convert import wfdb_to_wav, wfdb_to_edf
 import scipy.io
 import pyspark
 import requests
-import pycurl
 import validators
 import wget
 from pyspark.sql import SparkSession
@@ -93,7 +92,7 @@ class HDView:
         if self.spark_context is not None:
             print("Shutting down current SparkContext")
             self.spark_context.stop()
-        print("Instance killed")
+        #print("Instance killed")
         return True
 
     def __repr__(self) -> str:
@@ -109,6 +108,13 @@ class HDView:
         since the execution of the program
         """
         return HDView.VIEWS_INITIALIZED_COUNTER
+
+
+    # TODO : Ajouter methode download_sources (avec URL) dans un sub-folder samples/ pour requêtage local
+    # TODO : Ajouter (voir wget)
+    # TODO : Add tqdm for downloading files
+    # TODO : pour add record, on peut spécifier une URL également pointant vers un .hea en ligne (puis on s'occupe de récupérer les fichiers respectifs grâce à la méthode précédente
+    
 
     def add_record(self, record: str = None) -> bool:
         """
@@ -149,13 +155,15 @@ class HDView:
                                 # Getting the list of files from url
                                 r = requests.get(url.geturl())
                                 data = r.text
-                                soup = BeautifulSoup(data)
+                                soup = BeautifulSoup(data, "html.parser")
 
                                 # Formatting the relevant files
+
                                 links = {
-                                    k.get("href"): url + k.get("href") for k in soup.find_all("a")[1:] if k.get("href").split(".")[-1] in ["hea", "dat"]
+                                    k.get("href"): url.geturl() + k.get("href") for k in soup.find_all("a")[1:] if k.get("href").split(".")[-1] in ["hea", "dat"]
                                 }
 
+                                # Downloading the files
                                 for file, link in links.items():
                                     wget.download(url=link,
                                                   out=f"{self.folder_name}{file}")
@@ -165,12 +173,8 @@ class HDView:
                             raise ValueError("Headat only covers the 'physionet.org' web resources.")
                     else:
                         raise ValueError("Headat only covers HTTPS protocol for web resources.")
-                    # TODO Download the files
-                    # TODO Create a samples/ folder within the self.folder_name
-
                 except Exception as e:
                     raise Exception(f"An exception has occured during ")
-
             # If not, it's a local file and we simply read it using wfdb
             else:
                 read_rec = wf.rdsamp(record)
