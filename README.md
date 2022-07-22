@@ -18,13 +18,17 @@ Official GitHub repository for **HEADAT** library: `.hea`/`.dat` files processin
 PhysioBank has adopted a unified and well-structured file format in order to store and organize records and signals. The entire format system description is freely available in a highly-documented website (see [Resources](#resources))
 
 
-**HEADAT** is a light-weight, fully-operational Python library used for extracting, processing, converting and exporting signals and records data (under `.hea` and `.dat` format) within specified in-program format (DataFrames, Series, ...) or out-of-file on-disk or database files (see [Supported Export format](#list-of-in-memory-conversion-types) for more details) 
+**HEADAT** is a light-weight, fully-operational Python library used for extracting, processing, converting and 
+exporting ECGs signals and records data (under `.hea` and `.dat` format) within specified in-memory formats (DataFrames, Series, ...) 
+or on-disk exports/database files (see [Supported Export format](#list-of-in-memory-conversion-types) for more details).
 
-**HEADAT** has one goal : *make ECG-related signals processing **easier** and **funnier*** by :
+**HEADAT** has one goal : *make ECG signals processing **easier** and **funnier*** by :
 - embedding the core functions and datasets of WFDB/ECG signals within the Python data-science ecosystem : NumPy, SciPy, Bokeh, Scikit-Learn, TensorFlow, ...
-- exporting data in high-quality format for further development in various languages and platforms : **Python**, **R**, **Julia**, ...
-- supporting main features for High-Performance Computing (HPC) application
-- using streaming solutions for real-time analytics and making insights
+- exporting data in high-quality formats for further development in various languages and platforms : **Python**, **R**, **Julia**, **STATA** ...
+- supporting main features for High-Performance Computing (HPC) applications
+- using streaming solutions for real-time analytics and making medical insights.
+
+As a new module, the community goal is to reach each one of these items in the coming months.
 
 ## Install
 
