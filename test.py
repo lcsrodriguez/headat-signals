@@ -7,7 +7,7 @@ file = "samples/aami3a"
 """
 #a = HDView(file)
 b = a.get_signals()
-print(a.get_infos())
+print(a.get_info())
 c = a.t_frame()
 print(get_export_types())
 """

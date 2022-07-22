@@ -7,8 +7,12 @@ pyspark
 pandas
 numpy
 scipy
+pandas
 tables
 validators
 pycurl
 bs4
 wget
+tqdm
+urllib
+wfdb

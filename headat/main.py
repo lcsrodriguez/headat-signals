@@ -266,7 +266,7 @@ class HDView:
         """
         return self.signals.tolist()
 
-    def get_infos(self) -> dict:
+    def get_info(self) -> dict:
         """
         Function returning information about studied signals
         :return: Dictionary

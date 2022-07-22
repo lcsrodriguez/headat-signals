@@ -94,6 +94,17 @@ v.t_feather()
 ```
 The output will be stored into a timestamped file within the folder `out/view_<simulation_timestamp>`.
 
+Additionally, for monitoring purposes, you can check the number of HDView instantiated by calling :
+```python
+HDView.get_total_views_counter()
+```
+You can also gather the information labels and the raw signals :
+```python
+v.get_signals()
+v.get_infos()
+```
+
+If you find any other relevant feature to be implemented, please open a new issue !
 
 ## List of in-memory conversion types
 
@@ -150,7 +161,7 @@ See [RESOURCES](docs/RESOURCES.md).
 - *Development date*: June 2022 - today
 
 
-*PhysioNet* is a repository of freely-available medical research data, managed by the MIT Laboratory for Computational Physiology (MIT-LCP).
+*PhysioNet* is a repository of freely-available medical research data, managed by the MIT Laboratory for Computational Physiology ([MIT-LCP](https://github.com/MIT-LCP)).
 
 This wrapper is based on [wfdb](https://github.com/MIT-LCP/wfdb-python) features. Please consider using it for further development.
 
