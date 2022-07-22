@@ -79,9 +79,9 @@ If you choose the cloning method, please perform a prelinimary step: installing 
 | HDF5       | `.h5`         | Hierarchical Data Format (HDF)                                                                  |  ✅ |
 | SQLite    | `.db, .sqlite` | Classic and light-weight file-based SQL RDBMS (can be relevant for requesting organized records |  ❌ |
 | MATLAB    | `.mat`         | For heavy computations on MATLAB programs (proprietary software)                                |  ✅ |
-| WAV       | `.wav`         | -                                                                                               |  ✅ |
-| EDF       | `.edf`         | -                                                                                               |  ✅ |
-| Feather   | `.fea, .feather`| Apache Arrow's Feather file format for fast binary columnar in-memory storage                  |  ✅ |
+| WAV       | `.wav`         | WAV files                                                                                       |  ✅ |
+| EDF       | `.edf`         | European Data Format ([EDF](https://www.edfplus.info/specs/edf.html)) files                     |  ✅ |
+| Feather   | `.fea, .feather`| Apache Arrow's [Feather](https://arrow.apache.org/docs/python/feather.html) file format for fast binary columnar in-memory storage                  |  ✅ |
 | STATA   | `.dta`| STATA Statistical Analysis software (proprietary software)                                                 |  ✅ |
 
 
