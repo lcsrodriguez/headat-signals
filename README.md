@@ -94,10 +94,23 @@ v.t_feather()
 ```
 The output will be stored into a timestamped file within the folder `out/view_<simulation_timestamp>`.
 
+
+Get the supported MIME types with extensions for export formats :
+```python
+get_export_types()
+get_export_extensions()
+```
+
 Additionally, for monitoring purposes, you can check the number of HDView instantiated by calling :
 ```python
 HDView.get_total_views_counter()
 ```
+
+You may have the need to collect and print the underlying signals files from one HDView :
+```python
+v.get_record_files()
+```
+
 You can also gather the information labels and the raw signals :
 ```python
 v.get_signals()
@@ -122,7 +135,7 @@ If you find any other relevant feature to be implemented, please open a new issu
 
 | Name      | Extension      | Description                                                                                     | Ok |
 |-----------|----------------|-------------------------------------------------------------------------------------------------|:--:|
-| Text file | custom         | Standard text file                                                                              |  ✅ |
+| Text file | custom         | Standard text file     (`.out`, `.dat`, `.txt` or other custom extension)                       |  ✅ |
 | Excel     | `.xslx`        | MS Excel/OpenOffice Calc file                                                                   | ✅[^1] |
 | CSV       | `.csv`         | Better for data-science                                                                         |  ✅ |
 | JSON      | `.json`        | JSON file                                                                                       |  ✅ |
