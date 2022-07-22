@@ -49,6 +49,51 @@ pip install --upgrade pip
 
 If you choose the cloning method, please perform a prelinimary step: installing the dependencies manually by executing `pip install -r requirements.txt`
 
+## Getting started
+
+Create a HEADAT view corresponding to a simple record :
+```python
+a = HDView()
+```
+
+Add a record reference :
+1. directly to the constructor
+```python
+v = HDView("samples/aami3a")
+```
+2. by calling the `.add_record()` method
+```python
+v = HDView()
+v.add_record("samples/aami3a")
+```
+
+**Remark** : The library supports both remote and local resources; you can specify an URL or a relative/absolute path to 
+the file. In addition, you can specifiy or not the `.hea` extension of the file, depending on your technical choice; HEADAT
+will automatically parse the file, gather the signals and perform the needed processing.
+
+For instance, you can set up a HDView using either :
+1. `samples/aami3a`
+2. `samples/aami3a.hea`
+3. `https://physionet.org/files/aami-ec13/1.0.0/aami3a.hea`
+4. `https://physionet.org/files/aami-ec13/1.0.0/aami3a`
+
+Then, you can extract and convert the signals data to **manu supported formats** (see [list](#list-of-in-memory-conversion-types))
+```python
+v.t_csv()
+v.t_xlsx()
+v.t_json()
+v.t_xml()
+v.t_md()
+v.t_tex()
+v.t_parquet()
+v.t_pickle()
+v.t_wav()
+v.t_edf()
+v.t_csv()
+v.t_feather()
+```
+The output will be stored into a timestamped file within the folder `out/view_<simulation_timestamp>`.
+
 
 ## List of in-memory conversion types
 
