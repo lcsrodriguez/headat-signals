@@ -59,8 +59,9 @@ class HDView:
         if not isinstance(record, str) or not isinstance(title, str):
             raise TypeError("Record and title must be string values.")
         if record == "":
-            print(f"No record has been submitted.\n Please consider adding one to the view by doing .add_record("
-                  f"record_name)")
+            #print(f"No record has been submitted.\nPlease consider adding one to the view by doing .add_record("
+            #      f"record_name)")
+            pass
         else:
             # Registering the record name
             if not self.add_record(record):
@@ -122,14 +123,12 @@ class HDView:
         # Creation of a dedicated sub-folder named "samples/"
         path_filename = f"{self.folder_name}samples/"
         self.samples_foldername = path_filename
-        print("ok")
         if not os.path.isdir(path_filename) or not os.path.exists(path_filename):
             try:
                 os.mkdir(path_filename)
             except Exception as e:
                 raise Exception("An error has occured during the sub-folder creation process.\nError details: {e}")
 
-        print(path_filename)
         # Processing the URL
         # Checking if the record name is an URL
         if validators.url(url_parent_folder):
@@ -155,7 +154,7 @@ class HDView:
                             }
 
                             # Downloading the files
-                            for file, link in tqdm.tqdm(links.items()):
+                            for file, link in tqdm.tqdm(links.items(), colour="blue"):
                                 tqdm.tqdm.write(f"Processing link : {link}")
                                 wget.download(url=link,
                                               out=f"{self.samples_foldername}{file}",
@@ -170,11 +169,10 @@ class HDView:
                     raise ValueError("Headat only covers HTTPS protocol for web resources.")
             except Exception as e:
                 raise Exception(f"An exception has occured during ")
+
         # If not, it's a local file and we simply read it using wfdb
         else:
             raise ValueError("The argument specified is not a valid URL.")
-
-    # TODO : pour add record, on peut spécifier une URL également pointant vers un .hea en ligne (puis on s'occupe de récupérer les fichiers respectifs grâce à la méthode précédente
 
     def add_record(self, record: str = None) -> bool:
         """
@@ -189,8 +187,6 @@ class HDView:
         try:
             # Increment the number of initialized views in order to get a count
             HDView.VIEWS_INITIALIZED_COUNTER += 1
-
-            # TODO Add a split method in case which the record_name contains any extension (.hea, .dat, ...)
 
             # Checking if the record name is an URL
             if validators.url(record):
@@ -219,7 +215,6 @@ class HDView:
                     # We have the path to a .hea file
                     record = record.split(".")[0]
 
-                print(record)
                 # Reading the file
                 read_rec = wf.rdsamp(record)
 
@@ -536,7 +531,7 @@ class HDView:
         :rtype: bool
         :return: Boolean set to True if conversion has been successfully performed
         """
-        # TODO
+        # TODO To be implemented
         pass
 
     def t_matlab(self, **kwargs) -> bool:
@@ -639,39 +634,3 @@ class HDView:
         except Exception as e:
             print(e)
             return False
-
-    # ----------------------------------------------------------------
-    #                           GENERIC METHODS
-
-    def get_records_hashes(self):
-        """
-        Function computing and returning the different hashes of the record files.
-        :return:
-        """
-        import hashlib
-        BLOCKSIZE = 65536
-        hasher = hashlib.md5()
-        # TODO : Complete function (check Twitter post)
-
-"""
-    1 record <-> 1 or more signals
-
-    ------------------------------------------------
-    1 record <-> 1 HDView 
-        - useful for extracting entire or partial signals and entire records or selected signals from 1 record
-        - importing them as numpy array or pandas DataFrame, series, dictionnary, Python list
-        - exporting them to specific formats:
-            - csv, xlsx, json, xml
-            - text file with specific extension (.txt, .out, .dat, ...)
-            - latex, markdown, html
-            - pickle
-            - parquet
-            - hdfs
-            - sqlite
-            - matlab
-            - wav
-        - extracting useful information
-    ------------------------------------------------
-    1 or more records <-> 1 HDGroup ==> Goal: statistical comparison
-        - do the same as with 1 HDView but concat the multiple records side-by-side 
-"""

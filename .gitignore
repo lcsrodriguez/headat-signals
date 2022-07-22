@@ -5,3 +5,4 @@ __pycache__
 .idea/
 out/*
 *.xlsx
+PRIVATE_NOTES

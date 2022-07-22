@@ -14,7 +14,7 @@ print(get_export_types())
 
 a = HDView()
 #a.add_record(file)
-a.add_record("samples/aami3a")
+a.add_record("https://physionet.org/files/cebsdb/1.0.0/b001.hea")
 a.t_html()
 #a.add_record("https://physionet.org/files/aami-ec13/1.0.0/")
 #a.t_html()
