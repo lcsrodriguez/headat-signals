@@ -52,6 +52,9 @@ print(v.get_record_files())
 print(f"The output folder is : {v.folder_name}\nThe export files are located inside.\nFor remote resources, a subfolder samples/ contains the "
       f"downloaded files.")
 
+# Collecting signals in various types
+print(v.t_frame()) # Pandas DataFrame
+print(v.t_array()) # "Pure" Python array
 
 # Converting the signals into readable data format for further statistical processing
 v.t_csv()

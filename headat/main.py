@@ -114,7 +114,7 @@ class HDView:
         if self.spark_context is not None:
             print("Shutting down current SparkContext")
             self.spark_context.stop()
-        #print("Instance killed")
+
         self.stop_clock()
         self.compute_clock()
         print(f"sim_dur: {self.sim_duration}")
