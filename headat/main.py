@@ -15,13 +15,13 @@
 """
 import numpy as np
 import pandas as pd
-import pyspark
 from bs4 import BeautifulSoup
 from urllib.parse import urlparse
 import wfdb as wf
 from wfdb.io.convert import wfdb_to_wav, wfdb_to_edf
 import scipy.io
 import pyspark
+import tqdm
 import requests
 import validators
 import wget
@@ -119,19 +119,58 @@ class HDView:
         """
 
         # Creation of a dedicated sub-folder named "samples/"
-        path_filename = f"{self.folder_name}/samples/"
+        path_filename = f"{self.folder_name}samples/"
         self.samples_foldername = path_filename
+        print("ok")
         if not os.path.isdir(path_filename) or not os.path.exists(path_filename):
             try:
                 os.mkdir(path_filename)
-                return path_filename
             except Exception as e:
                 raise Exception("An error has occured during the sub-folder creation process.\nError details: {e}")
 
         print(path_filename)
-
         # Processing the URL
-        # TODO
+        # Checking if the record name is an URL
+        if validators.url(url_parent_folder):
+            try:
+                url = urlparse(url_parent_folder)
+                print(f"URL : {url}")
+
+                # Restriction to the physionet.org webpages
+                if url.scheme == "https":
+                    if url.netloc == "physionet.org":
+                        if url.path.split("/")[1] == "files":
+                            # Download the files
+
+                            # Getting the list of files from url
+                            r = requests.get(url.geturl())
+                            data = r.text
+                            soup = BeautifulSoup(data, "html.parser")
+
+                            # Formatting the relevant files
+                            links = {
+                                k.get("href"): url.geturl() + k.get("href") for k in soup.find_all("a")[1:] if
+                                k.get("href").split(".")[-1] in ["hea", "dat"]
+                            }
+
+                            # Downloading the files
+                            for file, link in tqdm.tqdm(links.items()):
+                                tqdm.tqdm.write(f"Processing link : {link}")
+                                wget.download(url=link,
+                                              out=f"{self.samples_foldername}{file}",
+                                              bar=None)
+                            print(f"Downloading from {url_parent_folder} completed successfully")
+                        else:
+                            raise ValueError("You have to specify a files/ subfolder")
+                    else:
+                        raise ValueError("Headat only covers the 'physionet.org' web resources.")
+                else:
+                    raise ValueError("Headat only covers HTTPS protocol for web resources.")
+            except Exception as e:
+                raise Exception(f"An exception has occured during ")
+        # If not, it's a local file and we simply read it using wfdb
+        else:
+            raise ValueError("The argument specified is not a valid URL.")
 
 
 
