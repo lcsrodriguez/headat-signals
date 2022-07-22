@@ -13,6 +13,9 @@
             Official Git repo   :   https://github.com/lcsrodriguez/headat-signals
 
 """
+import math
+import time
+
 import numpy as np
 import pandas as pd
 from bs4 import BeautifulSoup
@@ -46,6 +49,7 @@ class HDView:
         """
 
         # Declaring main variables
+        self.sim_duration = None
         self.samples_foldername = None
         self.nb_observations = None
         self.columns = None
@@ -54,6 +58,8 @@ class HDView:
         self.signals = None
         self.infos = None
         self.start_time = get_current_datetime()
+        self.sim_start = None
+        self.sim_end = None
 
         # Parsing the arguments of the c-tor
         if not isinstance(record, str) or not isinstance(title, str):
@@ -77,6 +83,20 @@ class HDView:
         # Creation of the folder
         view_folder_name = make_view_directory()
         self.folder_name = view_folder_name
+        self.start_clock()
+
+    def start_clock(self):
+        """ Function initiating the simulation clock """
+        self.sim_start = time.time()
+
+    def stop_clock(self):
+        """ Function closing the simulation clock """
+        self.sim_end = time.time()
+
+    def compute_clock(self):
+        """ Function computing the simulation total duration"""
+        if self.sim_start is not None and self.sim_end is not None:
+            self.sim_duration = math.fabs(self.sim_end - self.sim_start)
 
     def __str__(self) -> str:
         """
@@ -95,6 +115,9 @@ class HDView:
             print("Shutting down current SparkContext")
             self.spark_context.stop()
         #print("Instance killed")
+        self.stop_clock()
+        self.compute_clock()
+        print(f"sim_dur: {self.sim_duration}")
         return True
 
     def __repr__(self) -> str:

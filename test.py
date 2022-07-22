@@ -48,6 +48,11 @@ print(v.get_signals())
 # Getting the underlying files from the HDView
 print(v.get_record_files())
 
+# Getting information on new folder :
+print(f"The output folder is : {v.folder_name}\nThe export files are located inside.\nFor remote resources, a subfolder samples/ contains the "
+      f"downloaded files.")
+
+
 # Converting the signals into readable data format for further statistical processing
 v.t_csv()
 v.t_xlsx()
