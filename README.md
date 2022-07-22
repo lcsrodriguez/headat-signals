@@ -103,7 +103,7 @@ get_export_extensions()
 
 Additionally, for monitoring purposes, you can check the number of HDView instantiated by calling :
 ```python
-HDView.get_total_views_counter()
+HDView.VIEWS_INITIALIZED_COUNTER
 ```
 
 You may have the need to collect and print the underlying signals files from one HDView :

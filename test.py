@@ -1,34 +1,77 @@
+"""
+
+          _   _ _____    _    ____    _  _____
+         | | | | ____|  / \  |  _ \  / \|_   _|
+         | |_| |  _|   / _ \ | | | |/ _ \ | |
+         |  _  | |___ / ___ \| |_| / ___ \| |
+         |_| |_|_____/_/   \_\____/_/   \_\_|
+
+            Developer           :   Lucas RODRIGUEZ
+            Maintainer          :   Lucas RODRIGUEZ
+            Development date    :   June 2022 - ...
+            File description    :   HDView implementation
+            Official Git repo   :   https://github.com/lcsrodriguez/headat-signals
+
+"""
+
+"""
+    --------------------------------------------------------------------------------
+    This file is the official test document where you can test the main features
+    Please clone the current repo and execute it by performing
+    python3 test.py
+    --------------------------------------------------------------------------------
+"""
+
+# Importing the main file from HEADAT
 from headat.main import *
 
+# Specify the record path
+record_path = "samples/aami3a.hea"
 
-file_folder = "data/apnea-ecg-database-1.0.0/"
-file = "samples/aami3a"
-#a = HDView(file_folder + "a01r")
-"""
-#a = HDView(file)
-b = a.get_signals()
-print(a.get_info())
-c = a.t_frame()
+# Initiating the HDView
+v = HDView()
+
+# Adding a local resource
+v.add_record(record_path)
+
+# OR
+
+# Adding a remote resource from PhysioNet repo (WARNING : Heavy files (2.7GB))
+#v.add_record("https://physionet.org/files/cebsdb/1.0.0/b001.hea")
+
+# Getting information labels from the HDView
+print(v.get_info())
+
+# Getting raw signals (truncated by Python for human-friendly printing)
+print(v.get_signals())
+
+# Getting the underlying files from the HDView
+print(v.get_record_files())
+
+# Converting the signals into readable data format for further statistical processing
+v.t_csv()
+v.t_xlsx()
+v.t_json()
+v.t_xml()
+
+# Slow for heavy-sized files (due to the complexity of the standardized file format)
+v.t_md()
+v.t_tex()
+
+# Fast for heavy-sized files (columnar-based, in-memory and serialization)
+v.t_parquet()
+v.t_pickle()
+v.t_feather()
+
+# (Check the README for the complete list)
+
+# Getting the number of views initiated
+print(HDView.VIEWS_INITIALIZED_COUNTER)
+
+# Getting supported export formats information
 print(get_export_types())
-"""
+print(get_export_extensions())
 
-a = HDView()
-#a.add_record(file)
-a.add_record("https://physionet.org/files/cebsdb/1.0.0/b001.hea")
-a.t_html()
-#a.add_record("https://physionet.org/files/aami-ec13/1.0.0/")
-#a.t_html()
-"""
-a.t_csv()
-a.t_xlsx()
-a.t_json()
-a.t_xml()
-a.t_md()
-a.t_tex()
-a.t_parquet()
-a.t_pickle()
-a.t_wav()
-#a.t_edf()
-a.t_csv()
-a.t_feather()
-"""
+# End of test file
+
+# Lucas RODRIGUEZ - July 2022
