@@ -45,11 +45,9 @@ pip install --upgrade pip
 
 3. Instal **HEADAT**
     - by cloning the current repository: `git clone https://github.com/lcsrodriguez/headat-signals`
-    - by installing it using `pip`: `pip install headat`
+    - *by installing it using `pip`: `pip install headat`* (not operational yet)
 
 If you choose the cloning method, please perform a prelinimary step: installing the dependencies manually by executing `pip install -r requirements.txt`
-
-**Remark**: If you want to clearly uninstall the module, please use: `pip uninstall headat`.
 
 
 ## List of in-memory conversion types

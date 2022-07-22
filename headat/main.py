@@ -110,11 +110,12 @@ class HDView:
         """
         return HDView.VIEWS_INITIALIZED_COUNTER
 
-    def download_sources(self, url_parent_folder: str = ""):
+    def download_sources(self, url_parent_folder: str = "") -> bool:
         """
         Function performing the complete download of remote files from
         https://physionet.org/ website resources
         :param url_parent_folder: String containing the URL from https://physionet.org
+        :rtype: bool
         :return: Boolean showing if the full download has been performed with complete success
         """
 
@@ -160,6 +161,7 @@ class HDView:
                                               out=f"{self.samples_foldername}{file}",
                                               bar=None)
                             print(f"Downloading from {url_parent_folder} completed successfully")
+                            return True
                         else:
                             raise ValueError("You have to specify a files/ subfolder")
                     else:
@@ -172,13 +174,7 @@ class HDView:
         else:
             raise ValueError("The argument specified is not a valid URL.")
 
-
-
-    # TODO : Ajouter methode download_sources (avec URL) dans un sub-folder samples/ pour requêtage local
-    # TODO : Ajouter (voir wget)
-    # TODO : Add tqdm for downloading files
     # TODO : pour add record, on peut spécifier une URL également pointant vers un .hea en ligne (puis on s'occupe de récupérer les fichiers respectifs grâce à la méthode précédente
-    
 
     def add_record(self, record: str = None) -> bool:
         """
@@ -191,56 +187,40 @@ class HDView:
             raise ValueError("record cannot be NoneType")
 
         try:
-            # Registering the record on global scope
-            self.record = record
-
             # Increment the number of initialized views in order to get a count
             HDView.VIEWS_INITIALIZED_COUNTER += 1
 
             # TODO Add a split method in case which the record_name contains any extension (.hea, .dat, ...)
 
-            # Reading the record
-            # TODO Create a function which read the data, from URL or local file depending on the REGEXed recordname
-            # TODO Check if the domain is physionet.org with urlparse (after the check by validators)
-            # TODO Check if we download the data, in a specified folder
-            # TODO Use of PycURL for statistics on request latencies
             # Checking if the record name is an URL
             if validators.url(record):
-                try:
-                    url = urlparse(record)
-                    print(f"URL : {url}")
+                url = urlparse(record)
+                print(f"URL : {url}")
 
-                    # Restriction to the physionet.org webpages
-                    if url.scheme == "https":
-                        if url.netloc == "physionet.org":
-                            if url.path.split("/")[1] == "files":
-                                # Download the files
+                # We recover the parent folder:
+                parent_folder = "/".join(url.geturl().split("/")[: -1]) + "/"
+                print(parent_folder)
+                self.download_sources(parent_folder)
 
-                                # Getting the list of files from url
-                                r = requests.get(url.geturl())
-                                data = r.text
-                                soup = BeautifulSoup(data, "html.parser")
-
-                                # Formatting the relevant files
-
-                                links = {
-                                    k.get("href"): url.geturl() + k.get("href") for k in soup.find_all("a")[1:] if k.get("href").split(".")[-1] in ["hea", "dat"]
-                                }
-
-                                # Downloading the files
-                                for file, link in links.items():
-                                    wget.download(url=link,
-                                                  out=f"{self.folder_name}{file}")
-                            else:
-                                raise ValueError("You have to specify a files/ subfolder")
-                        else:
-                            raise ValueError("Headat only covers the 'physionet.org' web resources.")
-                    else:
-                        raise ValueError("Headat only covers HTTPS protocol for web resources.")
-                except Exception as e:
-                    raise Exception(f"An exception has occured during ")
+                # Checking if the user has entered the URL to a file (.hea, .dat)
+                # or just the name of the .hea without the extension
+                if len(url.geturl().split(".hea")) > 1 or len(url.geturl().split(".dat")) > 1:
+                    # We have the path to a .hea file
+                    record = url.geturl().split("/")[-1].split(".")[0]
+                else:
+                    record = url.geturl().split("/")[-1]
+                read_rec = wf.rdsamp(f"{self.samples_foldername}{record}")
             # If not, it's a local file and we simply read it using wfdb
             else:
+
+                # Checking if the user has entered the URL to a file (.hea, .dat)
+                # or just the name of the .hea without the extension
+                if len(record.split(".hea")) > 1 or len(record.split(".dat")) > 1:
+                    # We have the path to a .hea file
+                    record = record.split(".")[0]
+
+                print(record)
+                # Reading the file
                 read_rec = wf.rdsamp(record)
 
             # Filtering the signals and additional information from the signals using wfdb library
@@ -248,6 +228,9 @@ class HDView:
             self.infos = read_rec[1]
             self.columns = [k.lower().replace(" ", "_") for k in self.infos["sig_name"]]
             self.nb_observations = self.infos["sig_len"]
+
+            # Registering the record on global scope
+            self.record = record
             return True
         except Exception as e:
             raise Exception(f"Failure on the reading of the record: \nError details : {e}")
