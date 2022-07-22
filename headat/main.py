@@ -153,7 +153,7 @@ class HDView:
                 raise Exception("An error has occured during the sub-folder creation process.\nError details: {e}")
 
         # Processing the URL
-        # Checking if the record name is an URL
+        # Checking if the record name is a URL
         if validators.url(url_parent_folder):
             try:
                 url = urlparse(url_parent_folder)
@@ -211,7 +211,7 @@ class HDView:
             # Increment the number of initialized views in order to get a count
             HDView.VIEWS_INITIALIZED_COUNTER += 1
 
-            # Checking if the record name is an URL
+            # Checking if the record name is a URL
             if validators.url(record):
                 url = urlparse(record)
                 print(f"URL : {url}")
@@ -256,7 +256,8 @@ class HDView:
     def get_record_files(self, unique: bool = True) -> list:
         """
         Function returning the relative path of signal filenames
-        :param unique: Boolean. If set to True, get_record_files(True) returns a list of unique (non-redundant items) filenames
+        :param unique: Boolean. If set to True, get_record_files(True) returns a list of unique (non-redundant items)
+        filenames
         :rtype: list
         :return: List of signal filenames
         """

@@ -15,10 +15,10 @@ Official GitHub repository for **HEADAT** library: `.hea`/`.dat` files processin
 
 
 
-PhysioBank has adopted an unified and well-structured file format in order to store and organize records and signals. The entire format system description is freely available in an highly-documentated website (check Section **Resources**)
+PhysioBank has adopted a unified and well-structured file format in order to store and organize records and signals. The entire format system description is freely available in a highly-documented website (see [Resources](#resources))
 
 
-**HEADAT** is a light-weight, fully-operational Python library used for extracting, processing, converting and exporting signals and records data (under `.hea` and `.dat` format) within specified in-program format (DataFrames, Series, ...) or out-of-file on-disk or database files (see Section **Supported Export format** for more details) 
+**HEADAT** is a light-weight, fully-operational Python library used for extracting, processing, converting and exporting signals and records data (under `.hea` and `.dat` format) within specified in-program format (DataFrames, Series, ...) or out-of-file on-disk or database files (see [Supported Export format](#list-of-in-memory-conversion-types) for more details) 
 
 **HEADAT** has one goal : *make ECG-related signals processing **easier** and **funnier*** by :
 - embedding the core functions and datasets of WFDB/ECG signals within the Python data-science ecosystem : NumPy, SciPy, Bokeh, Scikit-Learn, TensorFlow, ...
@@ -47,7 +47,7 @@ pip install --upgrade pip
     - by cloning the current repository: `git clone https://github.com/lcsrodriguez/headat-signals`
     - *by installing it using `pip`: `pip install headat`* (not operational yet)
 
-If you choose the cloning method, please perform a prelinimary step: installing the dependencies manually by executing `pip install -r requirements.txt`
+If you choose the cloning method, please perform a preliminary step: installing the dependencies manually by executing `pip install -r requirements.txt`
 
 ## Getting started
 
@@ -67,8 +67,8 @@ v = HDView()
 v.add_record("samples/aami3a")
 ```
 
-**Remark** : The library supports both remote and local resources; you can specify an URL or a relative/absolute path to 
-the file. In addition, you can specifiy or not the `.hea` extension of the file, depending on your technical choice; HEADAT
+**Remark** : The library supports both remote and local resources; you can specify a URL or a relative/absolute path to 
+the file. In addition, you can specify or not the `.hea` extension of the file, depending on your technical choice; HEADAT
 will automatically parse the file, gather the signals and perform the needed processing.
 
 For instance, you can set up a HDView using either :
@@ -77,7 +77,7 @@ For instance, you can set up a HDView using either :
 3. `https://physionet.org/files/aami-ec13/1.0.0/aami3a.hea`
 4. `https://physionet.org/files/aami-ec13/1.0.0/aami3a`
 
-Then, you can extract and convert the signals data to **manu supported formats** (see [list](#list-of-in-memory-conversion-types))
+Then, you can extract and convert the signals' data to **manu supported formats** (see [list](#list-of-in-memory-conversion-types))
 ```python
 v.t_csv()
 v.t_xlsx()
@@ -161,7 +161,8 @@ If you find any other relevant feature to be implemented, please open a new issu
 - If you want to suggest a new supported format, please create a **new issue** with the *NEW EXPORT FORMAT* label.
 - If you want to add your own version of a new exporter for WFDB data, please init a **new Pull Request**
 
-[^1]: MS Excel (`.xls`/`.xlsx`) files have a maximum limit of lines to be written on a single spreadsheet (1048576). If the studied signals are too long, unexpected behavior can occur ! Please better consider `.csv` export with additional processing steps instead of incomplete `.xlsx` formatting.
+[^1]: MS Excel (`.xls`/`.xlsx`) files have a maximum limit of lines to be written on a single spreadsheet (1048576). 
+If the studied signals are too long, unexpected behavior can occur ! Please better consider `.csv` export with additional processing steps instead of incomplete `.xlsx` formatting.
 
 
 ## Resources 
@@ -170,7 +171,7 @@ See [RESOURCES](docs/RESOURCES.md).
 
 ## Acknowledgement
 
-- *Developer & Maintener*: **Lucas RODRIGUEZ**
+- *Developer & Maintainer*: **Lucas RODRIGUEZ**
 - *Development date*: June 2022 - today
 
 
