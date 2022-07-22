@@ -46,6 +46,7 @@ class HDView:
         """
 
         # Declaring main variables
+        self.samples_foldername = None
         self.nb_observations = None
         self.columns = None
         self.spark_context = None
@@ -108,6 +109,30 @@ class HDView:
         since the execution of the program
         """
         return HDView.VIEWS_INITIALIZED_COUNTER
+
+    def download_sources(self, url_parent_folder: str = ""):
+        """
+        Function performing the complete download of remote files from
+        https://physionet.org/ website resources
+        :param url_parent_folder: String containing the URL from https://physionet.org
+        :return: Boolean showing if the full download has been performed with complete success
+        """
+
+        # Creation of a dedicated sub-folder named "samples/"
+        path_filename = f"{self.folder_name}/samples/"
+        self.samples_foldername = path_filename
+        if not os.path.isdir(path_filename) or not os.path.exists(path_filename):
+            try:
+                os.mkdir(path_filename)
+                return path_filename
+            except Exception as e:
+                raise Exception("An error has occured during the sub-folder creation process.\nError details: {e}")
+
+        print(path_filename)
+
+        # Processing the URL
+        # TODO
+
 
 
     # TODO : Ajouter methode download_sources (avec URL) dans un sub-folder samples/ pour requêtage local
