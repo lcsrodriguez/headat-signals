@@ -3,7 +3,9 @@
 
 ## v0.1.0-alpha
 
-**version** : https://github.com/lcsrodriguez/headat-signals/releases/
+This is the first pre-release.
+
+**Version** : https://github.com/lcsrodriguez/headat-signals/releases/
 
 ## Links
 
